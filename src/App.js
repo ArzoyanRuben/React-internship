@@ -36,9 +36,7 @@ function App() {
   return (
     <div className="main">
       {users ? (
-        <>
           <Users users={users} showName={showName} />
-        </>
       ) : (
         <h1>...Loading</h1>
       )}
