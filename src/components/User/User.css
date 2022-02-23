@@ -1,0 +1,8 @@
+.user {
+    display: flex;
+    list-style: none;
+    border: 1px solid red;
+    width: 20rem;
+    height: 3rem;
+    justify-content: space-between;
+}
