@@ -1,19 +1,20 @@
-
 import React from 'react';
 
 function Modal({name, showModal, closeModal}) {
 
-    return (
+    return showModal ? (
         <>
-        {showModal && <div className="modal">
-            <div className="modal-content">
-                <span className="close" onClick={closeModal}>&times;</span>
-                <p>Hi, I'm {name}</p>
-            </div>
-        </div>}
+            {<div className="modal" onClick={closeModal}>
+                <div className="modal-content" onClick={e => {
+                    e.stopPropagation();
+                }}>
+                    <span className="close" onClick={closeModal}>&times;</span>
+                    <p>Hi, I'm {name}</p>
+                </div>
+            </div>}
 
         </>
-    );
+    ) : null;
 }
 
 export default Modal;

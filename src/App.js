@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Users from "./components/Users";
 import axios from "axios";
 
@@ -13,7 +13,7 @@ function App() {
                 setUsers(res.data)
             })
             .catch(err => console.log(err))
-    },[])
+    }, [])
 
     return (
         <div className="App">

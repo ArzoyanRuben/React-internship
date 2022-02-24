@@ -1,24 +1,25 @@
-
 import React, {useState} from 'react';
 
 import Modal from "./Modal";
 
 function Users({name}) {
-const [showModal, setShowModal] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
-    function openModal () {
+    function openModal() {
         setShowModal(true)
     }
-    function closeModal () {
+
+    function closeModal() {
         setShowModal(false)
     }
+
     return (
         <div className="app-wrapper">
             <li>
                 {name}
                 <button className="btn"
                         onClick={openModal}
-                        >Open modal
+                >Open modal
                 </button>
             </li>
             <Modal
