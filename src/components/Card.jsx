@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getData } from "./API";
 import { CardBody } from './CardBody';
 
@@ -13,7 +13,6 @@ export const Card = () => {
     return () => (mounted = false);
   }, []);
 
-  console.log(data);
   return(
     <div className="main-container">
         {data.map((item) => <CardBody key={item.id} item={item} />)}
