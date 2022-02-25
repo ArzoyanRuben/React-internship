@@ -1,54 +1,25 @@
-import "./App.css";
-import { useEffect, useState } from "react";
-import Users from "./components/Users/Users";
-import Modal from "./components/Modal/Modal";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-async function getUsers() {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    const data = await response.json();
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
-}
+import "./App.css";
+import LeftSideBar from "./layout/LeftSideBar";
+import Home from "./pages/Home";
+import Albums from "./pages/Albums";
+import Users from "./pages/Users";
 
 function App() {
-  const [users, setUsers] = useState(null);
-  const [current, setCurrent] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getUsers();
-      setUsers(data);
-    };
-    fetchData();
-  }, []);
-
-  const closeModal = () => {
-    setCurrent(null)
-  }
-
-  const showName = (name) => {
-    setCurrent(name);
-  };
-
   return (
-    <div className="main">
-      {users ? (
-          <Users users={users} showName={showName} />
-      ) : (
-        <h1>...Loading</h1>
-      )}
-      {current && (
-        <Modal id="modal" open={current}>
-          <div className="modal-content">
-          <span className="modal-content__close" onClick={closeModal}>X</span>
-            <p> Hello {current}</p>
-          </div>
-        </Modal>
-      )}
-    </div>
+    <>
+      <div className="main">
+        <Router>
+          <LeftSideBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route exact path="/users" element={<Users />} />
+            <Route exact path="/albums" element={<Albums />} />
+          </Routes>
+        </Router>
+      </div>
+    </>
   );
 }
 

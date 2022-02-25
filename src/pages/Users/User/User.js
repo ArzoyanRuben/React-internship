@@ -1,4 +1,5 @@
 import "./User.css"
+
 export default function User({ user, showName }) {
   const handleShowName = () => {
     showName(user.name);

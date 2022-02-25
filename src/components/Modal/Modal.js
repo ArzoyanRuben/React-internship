@@ -4,6 +4,7 @@ import "./Modal.css";
 
 export default function Modal({ children, id, open }) {
   const el = useRef(document.createElement("div"));
+
   useEffect(() => {
     document.body.appendChild(el.current);
     el.current.classList.add(id);
