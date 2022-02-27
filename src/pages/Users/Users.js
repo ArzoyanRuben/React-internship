@@ -1,49 +1,24 @@
-import { useState, useEffect } from "react";
-
-import User from "./User";
-import Modal from "../../components/Modal";
+import User from "../../components/User";
 import { getUsers } from "../../API/useAPI";
+import { getPosts } from "../../API/postAPI";
+import Posts from "../../components/Posts/Posts";
+import useFetch from "../../hooks/useFetch";
+import List from "../../components/shared/List/List";
 
 export default function Users() {
-  const [users, setUsers] = useState(null);
-  const [current, setCurrent] = useState(null);
+  const [users] = useFetch(null, getUsers);
+  const [posts] = useFetch([], getPosts);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getUsers();
-      setUsers(data);
-    };
-    fetchData();
-  }, []);
-
-  const closeModal = () => {
-    setCurrent(null);
-  };
-
-  const showName = (name) => {
-    setCurrent(name);
-  };
   return (
-    <div className="users">
-      {users ? (
-        <>
-          {users.map((user) => (
-            <User key={user.id} user={user} showName={showName} />
-          ))}
-        </>
-      ) : (
-        <h1>...Loading</h1>
+    <>
+      {users &&  (
+        <List
+          listItems={users}
+          modalItems={posts}
+          ListComponent={User}
+          ModalComponent={Posts}
+        />
       )}
-      {current && (
-        <Modal id="modal" open={current}>
-          <div className="modal-content">
-            <span className="modal-content__close" onClick={closeModal}>
-              X
-            </span>
-            <p> Hello {current}</p>
-          </div>
-        </Modal>
-      )}
-    </div>
+    </>
   );
 }

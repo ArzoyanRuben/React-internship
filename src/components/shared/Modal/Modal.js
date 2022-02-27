@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
+
 import ReactDOM from "react-dom";
+
 import "./Modal.css";
 
 export default function Modal({ children, id, open }) {

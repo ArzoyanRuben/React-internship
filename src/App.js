@@ -8,18 +8,20 @@ import Users from "./pages/Users";
 
 function App() {
   return (
-    <>
-      <div className="main">
-        <Router>
+    <div className="app">
+      <Router>
+        <aside>
           <LeftSideBar />
+        </aside>
+        <div className="main">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route exact path="/users" element={<Users />} />
             <Route exact path="/albums" element={<Albums />} />
           </Routes>
-        </Router>
-      </div>
-    </>
+        </div>
+      </Router>
+    </div>
   );
 }
 
