@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import setlocalStorage from "../utils/setLocalStorage";
 
 export default function useFetch(initialVal, request) {
     const [value, setValue] = useState(initialVal);
@@ -11,7 +10,6 @@ export default function useFetch(initialVal, request) {
           
         };
         fetchData();
-
         return setValue(null)
       }, []);
 
