@@ -5,9 +5,10 @@
 
 .main {
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100%;
+  overflow-y: auto;
+  padding-top: 2rem;
 }
 
 #modal-root {
@@ -15,24 +16,7 @@
   z-index: 999;
 }
 
-.modal-content {
-  background-color: white;
-  width: 30rem;
-  height: 30rem;
-  padding: 1rem;
-  position: relative;
-  overflow-y: auto;
-}
-
-.modal-content__close {
-  position: fixed;
-  background-color: blue;
-  cursor: pointer;
-  width: 1.5rem;
-  height: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  right: 35%;
-  top: 18%
+.left-sidebar {
+  height: 100vh;
+  background-color: gray;
 }

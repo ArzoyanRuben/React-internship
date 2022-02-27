@@ -1,6 +1,6 @@
 import "./LeftSideBar.css"
 import { navItems } from "../../constants/navItems.constant"
-import SideBarItem from "./SideBarItem/SideBarItem"
+import SideBarItem from "../../components/SideBarItem/SideBarItem"
 
 export default function LeftSideBar() {
     return (

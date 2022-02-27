@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="app">
       <Router>
-        <aside>
+        <aside className="left-sidebar">
           <LeftSideBar />
         </aside>
         <div className="main">
