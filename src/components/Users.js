@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-
 import Modal from "./Modal";
 
-function Users({name}) {
+function Users({name, id1}) {
     const [showModal, setShowModal] = useState(false)
 
     function openModal() {
@@ -24,6 +23,7 @@ function Users({name}) {
             </li>
             <Modal
                 name={name}
+                id1={id1}
                 showModal={showModal}
                 openModal={openModal}
                 closeModal={closeModal}/>
