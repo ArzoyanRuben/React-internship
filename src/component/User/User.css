@@ -1,0 +1,44 @@
+.info_item{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    
+}
+.info-list:nth-child(odd){
+    background: rgba(97, 97, 138, 0.411);
+}
+
+.modal{
+    background-color: rgba(97, 97, 138, 0.411);
+    padding: 15px;
+    border: 2px solid grey;
+    position: absolute;
+    border-radius: 5px;
+    top: 30%;
+    left: 40%;
+}
+
+.info-btn{
+    border: none;
+    background: none;
+    padding: 5px;
+    cursor: pointer;
+}
+.users_info-box{
+    border: 2px solid gray;
+    width: 50%;
+    border-radius: 5px;
+    margin: 5px;
+}
+.close-modal-btn {
+    border: none;
+    margin: 5px;
+    background-color: grey;
+    border-radius: 30%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.info-btn:hover {
+    color: gray;
+}

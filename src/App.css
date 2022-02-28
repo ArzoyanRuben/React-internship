@@ -1,35 +1,6 @@
-.user-info-box{
-    
-}
-body.active-modal {
-    overflow-y: hidden;
-}
-
-.btn-modal {
-    padding: 10px 20px;
-    display: block;
-    margin: 100px auto 0;
-    font-size: 18px;
-}
-.modal {
-    width: 150px;
-    height: 150px;
-    background-color: white;
+.app {
+    width: 70%;
     text-align: center;
+    margin: 5px;
+    padding: 10px;
 }
-
-
- .overlay {
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: fixed;
-}
-
-.overlay {
-    background: rgba(49,49,49,0.8);
-}
-

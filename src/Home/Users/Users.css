@@ -1,0 +1,39 @@
+
+body.active-modal {
+    overflow-y: hidden;
+}
+
+.btn-modal {
+    padding: 10px 20px;
+    display: block;
+    margin: 100px auto 0;
+    font-size: 18px;
+}
+.modal {
+    width: 150px;
+    height: 150px;
+    background-color: white;
+    text-align: center;
+}
+ .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+.overlay {
+    background: rgba(99, 97, 97, 0.082);
+}
+.main-content{
+    display:flex;
+
+ 
+
+}
+.main{
+    width: 70%;
+}
+

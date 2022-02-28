@@ -1,0 +1,6 @@
+.album:nth-child(odd){
+    background-color: rgba(97, 97, 138, 0.411);
+}
+.album {
+    padding: 3px;
+}

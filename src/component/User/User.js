@@ -1,27 +1,27 @@
-import "./Users.css";
-import React, { useState } from "react";
+import "./User.css";
+import React, { useState, useEffect } from "react";
 import Modal from "../Modal/Modal";
 
-function Users({ name }) {
+function User({ name }) {
   const [modal, setModal] = useState(false);
-
   const toggleModal = () => {
     setModal(!modal);
   };
-
   return (
-    <div className="users_info-box">
+    <div className="info-list">
       <div className="info_item">
         {name}
-        <button onClick={toggleModal}>Open Modal</button>
+        <button className="info-btn" onClick={toggleModal}>
+          See post
+        </button>
       </div>
       {modal && (
         <div onClick={toggleModal} className="overlay">
           <div className="modal">
-            <Modal name={name} />
-            <button className="close-modal" onClick={toggleModal}>
+            <button className="close-modal-btn" onClick={toggleModal}>
               X
             </button>
+            <Modal name={name} />
           </div>
         </div>
       )}
@@ -29,4 +29,4 @@ function Users({ name }) {
   );
 }
 
-export default Users;
+export default User;

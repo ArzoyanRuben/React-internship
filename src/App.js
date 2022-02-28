@@ -1,32 +1,26 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import Modal from "./component/Modal/Modal";
-import Users from "./component/Users/Users";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Users from "./Home/Users/Users";
+import Albums from "./Home/Albums/Albums";
+import Posts from "./component/Posts/Posts";
+import LeftSideBar from "./Layout/LeftSideBar/LeftSideVar";
+
+import Header from "./Layout/Header/Header";
 
 function App() {
-  const [users, setUsers] = useState([]);
-
-  const fetchData = () => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setUsers(data);
-      });
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   return (
-    <div className="info_item">
-      <div className="users-info-box">
-        {users.map((users) => (
-          <Users className="users_info" key={users.id} name={users.name}>
-            
-          </Users>
-        ))}
+    <div className="app">
+      <div className="main">
+        <Header />
+        <div className="main-content">
+          <LeftSideBar />
+          <Routes>
+            <Route path="/" element={<Users />} />
+            <Route path="/albums" element={<Albums />} />
+          </Routes>
+          {/* <Posts/> */}
+        </div>
       </div>
     </div>
   );
