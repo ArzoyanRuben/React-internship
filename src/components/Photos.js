@@ -5,7 +5,7 @@ function Photos({id, userId, title, showModal, openModal, closeModal}) {
     return (
         <div className="flex-container">
             <div key={id}   onClick={openModal}>
-                <div>Album's userId: {userId} <br /> Album's title: {title} </div>
+                <div style={{fontFamily: "Georgia"}}> {title} </div>
             </div>
             <PhotoModal
                 id={id}

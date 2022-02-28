@@ -1,6 +1,5 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
-import Users from "./components/Users";
 import {getUsers} from "./API/usersAPI";
 import Navbar from "./Navbar";
 import Home from "./components/Home";
@@ -19,20 +18,16 @@ function App() {
     }, [])
 
 
-
-
     return (
         <div className="App">
             <div className='navbar'>
                 <Navbar/></div>
             <div className='content'>
-            <Routes>
-
+                <Routes>
                     <Route path="/" element={<Home users={users}/>}/>
                     <Route path="/albums" element={<Albums/>}/>
-
-            </Routes>
-        </div>
+                </Routes>
+            </div>
         </div>
     );
 }

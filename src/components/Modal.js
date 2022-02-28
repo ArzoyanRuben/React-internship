@@ -28,7 +28,6 @@ function Modal({id1, name, showModal, closeModal}) {
                                     <p> . {post.title} </p>
                                 </div> : null
                     )}
-
                 </div>
             </div>}
 

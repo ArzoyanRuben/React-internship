@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {getUsers} from "../API/usersAPI";
 import {getAlbums} from "../API/albumsAPI";
-import Modal from "./Modal";
 import Photos from "./Photos";
-import Users from "./Users";
 
-function Albums(props) {
+
+function Albums() {
     const [albums, setAlbums] = useState([]);
     const [showModal, setShowModal] = useState(false)
     useEffect(() => {
@@ -27,10 +25,13 @@ function Albums(props) {
 
     return (
         <div>
+            <h2>TITLES OF ALBUMS</h2>
             {albums.map(
                 album =>
-                    <Photos key={album.id} userId={album.userId} title={album.title} showModal={showModal} openModal={openModal} closeModal={closeModal}/>
+                    <Photos key={album.id} userId={album.userId} title={album.title} showModal={showModal}
+                            openModal={openModal} closeModal={closeModal}/>
             )}
+
         </div>
     );
 }
