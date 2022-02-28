@@ -14,12 +14,8 @@ function Users({name, id1}) {
 
     return (
         <div className="app-wrapper">
-            <li>
+            <li onClick={openModal}>
                 {name}
-                <button className="btn"
-                        onClick={openModal}
-                >Open modal
-                </button>
             </li>
             <Modal
                 name={name}

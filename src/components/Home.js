@@ -6,7 +6,7 @@ function Home({users}) {
         <div>
             <ul>
                 {users.map(user => (
-                    <Users key={user.id}  id1={user.id} name={user.name}/>
+                    <Users key={user.id}  id1={user.id} name={user.name} />
                 ))}
             </ul>
         </div>

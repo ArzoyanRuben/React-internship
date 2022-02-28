@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 function Navbar() {
     return (
         <nav className='nav' >
-            <div className='column left'>
-                <Link to='/'>Users</Link><br/>
-                <Link to='/albums'>Albums</Link><br />
+            <div className='links'>
+                <div><Link to='/'>Users</Link></div>
+                <div><Link to='/albums'>Albums</Link></div>
+
             </div>
         </nav>
     )

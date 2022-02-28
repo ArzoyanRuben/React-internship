@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {getPosts} from "../API/postsAPI";
 
-function Posts({id}) {
+function Posts({id1}) {
     const [posts, setPosts] = useState([]);
     useEffect(() => {
         getPosts().then(res => {
@@ -15,9 +15,10 @@ function Posts({id}) {
         <div>
             {posts.map(
                 post =>
-                    <div key={post.id} >
-                        {id === post.userId && post.title}
-                    </div>
+                    (id1 === post.userId) ?
+                        <div key={post.id} >
+                            {post.title}
+                        </div> : null
             )}
         </div>
     );

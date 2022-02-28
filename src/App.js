@@ -23,13 +23,16 @@ function App() {
 
     return (
         <div className="App">
-            <Navbar />
+            <div className='navbar'>
+                <Navbar/></div>
+            <div className='content'>
             <Routes>
-                    <Route path="/" element={<Home users={users}/>} />
-                    <Route path="/albums" element={<Albums />} />
+
+                    <Route path="/" element={<Home users={users}/>}/>
+                    <Route path="/albums" element={<Albums/>}/>
+
             </Routes>
-
-
+        </div>
         </div>
     );
 }

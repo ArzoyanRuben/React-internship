@@ -19,14 +19,14 @@ function Modal({id1, name, showModal, closeModal}) {
                     e.stopPropagation();
                 }}>
                     <span className="close" onClick={closeModal}>&times;</span>
-                    <p>Title: {name}</p>
+                    <div className="modal-title">Title: {name}</div>
 
                     {posts.map(
                         post =>
                             (id1 === post.userId) ?
-                            <div key={post.id} >
-                                {post.title}
-                            </div> : null
+                                <div key={post.id} className='modal-post'>
+                                    <p> . {post.title} </p>
+                                </div> : null
                     )}
 
                 </div>
@@ -37,8 +37,5 @@ function Modal({id1, name, showModal, closeModal}) {
 }
 
 export default Modal;
-
-
-
 
 
