@@ -1,11 +1,19 @@
 import { useState } from "react";
-
-import "./List.css"
+import Loader from "../Loader/Loader";
+import "./List.css";
 
 import Modal from "../Modal";
+import useFetch from "../../../hooks/useFetch";
 
-export default function List({listItems, modalItems, ListComponent, ModalComponent}) {
+export default function List({
+  listItemsGetter,
+  modalItemsGetter,
+  ListComponent,
+  ModalComponent,
+}) {
+
   const [current, setCurrent] = useState(null);
+  const [listItems] = useFetch(null, listItemsGetter);
 
   const closeModal = () => {
     setCurrent(null);
@@ -16,26 +24,26 @@ export default function List({listItems, modalItems, ListComponent, ModalCompone
   };
 
   return (
-    <div className="list">
+    <>
       {listItems ? (
-        <>
+        <ul className="list">
           {listItems.map((item) => (
             <ListComponent key={item.id} item={item} showItems={showItems} />
           ))}
-        </>
+          {current && (
+            <Modal id="modal" open={current}>
+              <div className="modal-content">
+                <span className="modal-content__close" onClick={closeModal}>
+                  X
+                </span>
+                <ModalComponent itemsGetter={modalItemsGetter} id={current} />
+              </div>
+            </Modal>
+          )}
+        </ul>
       ) : (
-        <h1>...Loading</h1>
+        <Loader />
       )}
-      {current && (
-        <Modal id="modal" open={current}>
-          <div className="modal-content">
-            <span className="modal-content__close" onClick={closeModal}>
-              X
-            </span>
-            <ModalComponent items={modalItems} id={current} />
-          </div>
-        </Modal>
-      )}
-    </div>
+    </>
   );
 }

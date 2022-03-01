@@ -13,7 +13,5 @@ export default function useFetch(initialVal, request) {
         return setValue(null)
       }, []);
 
-      return [value]
-
-      
+      return [value]  
 }
