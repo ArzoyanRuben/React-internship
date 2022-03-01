@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 
 import "./Modal.css";
 
-export default function Modal({ children, id, open }) {
+export default function Modal({ children, id}) {
   const el = useRef(document.createElement("div"));
 
   useEffect(() => {
@@ -15,5 +15,5 @@ export default function Modal({ children, id, open }) {
     };
   }, []);
 
-  return <>{open ? ReactDOM.createPortal(children, el.current) : null}</>;
+  return <>{ReactDOM.createPortal(children, el.current)}</>;
 }

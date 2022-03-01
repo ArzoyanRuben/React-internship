@@ -31,7 +31,7 @@ export default function List({
             <ListComponent key={item.id} item={item} showItems={showItems} />
           ))}
           {current && (
-            <Modal id="modal" open={current}>
+            <Modal id="modal">
               <div className="modal-content">
                 <span className="modal-content__close" onClick={closeModal}>
                   X
