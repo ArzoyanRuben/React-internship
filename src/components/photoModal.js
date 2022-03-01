@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {getPhotos} from "../API/photosAPI";
 import Photo from "./Photo";
 
-function PhotoModal({userId, showModal, closeModal}) {
+function PhotoModal({id, userId, title, showPhotoModal, closePhotoModal }) {
     const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
@@ -12,16 +12,14 @@ function PhotoModal({userId, showModal, closeModal}) {
         })
             .catch(err => console.log(err))
     }, [])
-    return showModal ? (
+    return showPhotoModal ? (
         <>
-            {<div className="photo-modal" onClick={closeModal}>
-                <div className="photo-modal-content" onClick={e => {
+            {<div className="photo-modal" onClick={closePhotoModal}>
+                <div key={id} className="photo-modal-content" onClick={e => {
                     e.stopPropagation();
                 }}>
-                    <span className="close" onClick={closeModal}>&times;</span>
-
-                    { photos.map(photo => (userId === photo.id) ? <Photo  url={photo.url}/> : null
-
+                    <span className="close" onClick={closePhotoModal}>&times;</span>
+                    { photos.map(photo => (userId === photo.id) ?  <Photo  url={photo.url} title={photo.title}/> : null
                     )}
                 </div>
             </div>}

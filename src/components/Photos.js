@@ -1,19 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PhotoModal from "./photoModal";
+import Modal from "./Modal";
 
-function Photos({id, userId, title, showModal, openModal, closeModal}) {
+function Photos({userId, title}) {
+
+    const [showPhotoModal, setShowPhotoModal] = useState(false)
+
+    function openPhotoModal() {
+        setShowPhotoModal(true)
+    }
+
+    function closePhotoModal() {
+        setShowPhotoModal(false)
+    }
+
     return (
-        <div className="flex-container">
-            <div key={id}   onClick={openModal}>
+
+        <div className="photo-container">
+            <div className="photo-container-content" onClick={openPhotoModal}>
                 <div style={{fontFamily: "Georgia"}}> {title} </div>
             </div>
             <PhotoModal
-                id={id}
+                title={title}
                 userId={userId}
-                tytle={title}
-                showModal={showModal}
-                openModal={openModal}
-                closeModal={closeModal}/>
+                showPhotoModal={showPhotoModal}
+                openPhotoModal={openPhotoModal}
+                closePhotoModal={closePhotoModal}/>
         </div>
     );
 }
