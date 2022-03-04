@@ -1,5 +1,6 @@
 import Paper from "@mui/material/Paper";
 import { getTableItems } from "../../API/tableItemsAPI";
+import Loader from "../../components/shared/Loader/Loader";
 import VirtualizedTable from "../../components/VirtualizedTable/VirtualizedTable";
 import useFetch from "../../hooks/useFetch";
 
@@ -21,7 +22,7 @@ export default function Table() {
           />
         </Paper>
       ) : (
-        <h1>...Loading</h1>
+        <Loader/>
       )}
     </>
   );
