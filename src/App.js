@@ -5,6 +5,7 @@ import LeftSideBar from "./layout/LeftSideBar";
 import Home from "./pages/Home";
 import Albums from "./pages/Albums";
 import Users from "./pages/Users";
+import Table from "./pages/Table/Table";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route exact path="/users" element={<Users />} />
             <Route exact path="/albums" element={<Albums />} />
+            <Route exact path="/table" element={<Table />} />
           </Routes>
         </div>
       </Router>
