@@ -25,4 +25,4 @@ export default function Posts({ itemsGetter, id }) {
       )}
     </>
   );
-}
+} 

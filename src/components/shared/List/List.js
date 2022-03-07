@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Loader from "../Loader/Loader";
 import "./List.css";
 
@@ -19,17 +19,15 @@ export default function List({
     setCurrent(null);
   };
 
-  const showItems = (id) => {
+  const showItems = useCallback((id) => {
     setCurrent(id);
-  };
+  }, [listItems]);
 
   return (
     <>
       {listItems ? (
         <ul className="list">
-          {listItems.map((item) => (
-            <ListComponent key={item.id} item={item} showItems={showItems} />
-          ))}
+            <ListComponent list={listItems} showItems={showItems}/>
           {current && (
             <Modal id="modal">
               <div className="modal-content">

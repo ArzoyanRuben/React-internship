@@ -1,13 +1,15 @@
-import "./User.css"
+import React from "react";
+import "./User.css";
 
-export default function User({ item, showItems }) {
+export default function User({ user, showItems }) {
   const handleShowPosts = () => {
-    showItems(item.id);
+    showItems(user.id);
   };
 
   return (
     <li className="user" onClick={handleShowPosts}>
-      <p>{item.name}</p>
+      <p>{user.name}</p>
     </li>
   );
 }
+

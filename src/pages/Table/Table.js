@@ -15,7 +15,7 @@ export default function Table() {
             rowCount={tableItems.length}
             rowGetter={({ index }) => tableItems[index]}
             columns={Object.keys(tableItems[0]).map((cell) => ({
-              width: 200,
+              width: 1000,
               label: [cell],
               dataKey: [cell],
             }))}

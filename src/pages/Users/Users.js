@@ -1,4 +1,4 @@
-import User from "../../components/User";
+import UsersList from "../../components/UsersList/UsersList";
 import { getUsers } from "../../API/useAPI";
 import { getPosts } from "../../API/postAPI";
 import Posts from "../../components/Posts/Posts";
@@ -9,7 +9,7 @@ export default function Users() {
     <List
       listItemsGetter={getUsers}
       modalItemsGetter={getPosts}
-      ListComponent={User}
+      ListComponent={UsersList}
       ModalComponent={Posts}
     />
   );
