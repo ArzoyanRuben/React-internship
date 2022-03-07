@@ -1,33 +1,18 @@
-// import { Card } from "./components/Card";
-import { Users } from "./components/Users";
-import { Albums } from "./components/Albums";
-import { Error404 } from "./components/Error404";
-import { LeftPanel } from "./components/LeftPanel";
-import { Routes, Route, useLocation } from "react-router-dom";
+import * as React from "react";
+import { Routes, Route } from "react-router-dom";
+import { Error404 } from "./pages/Error404/Error404";
+import { AppBody } from "./pages/AppBody/AppBody";
+import { Users } from "./pages/Users/Users";
+import { Albums } from "./pages/Albums/Albums";
 
-function App() {
-  let location = useLocation();
-  let state = location.state;
-  console.log(location, state);
-
+export default function App() {
   return (
-    // <Card />
-    <Routes location={state.backgroundLocation || location}>
-      <Route path="/" element={<LeftPanel />}>
+    <Routes>
+      <Route path="/" element={<AppBody />}>
         <Route index element={<Users />} />
         <Route path="albums" element={<Albums />} />
-        {/* <Route path="img/:id" element={<ImageView />} /> */}
-        <Route element={<Error404 />} />
       </Route>
+      <Route path="*" element={<Error404 />} />
     </Routes>
   );
 }
-
-{
-  /* {state?.backgroundLocation && (
-        <Routes>
-          <Route path="/img/:id" element={<Modal />} />
-        </Routes>
-      )} */
-}
-export default App;
