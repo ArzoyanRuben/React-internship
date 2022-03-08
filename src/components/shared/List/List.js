@@ -24,14 +24,19 @@ export default function List({ listItemsGetter, ListComponent, action }) {
     newValue.current = value;
   };
 
-  const setNewValue = () => {
-    setListItems(
-      listItems.map((item) => {
-        return item.id === current.id
-          ? { ...item, name: newValue.current }
-          : item;
-      })
-    );
+  const setNewValue = (type) => () => {
+    if (type === "new") {
+      setListItems([{name: newValue.current, id: listItems.length}, ...listItems]);
+      console.log(newValue.current)
+    } else {
+      setListItems(
+        listItems.map((item) => {
+          return item.id === current.id
+            ? { ...item, name: newValue.current }
+            : item;
+        })
+      );
+    }
     setCurrent(null);
   };
 
@@ -39,26 +44,33 @@ export default function List({ listItemsGetter, ListComponent, action }) {
     <>
       {listItems ? (
         <ul className="list">
+          <button
+            onClick={() => {
+              setCurrent("  ");
+            }}
+          >
+            + Add
+          </button>
           <ListComponent list={listItems} showItems={showItems} />
-          {current && (
-            <Modal id="modal">
-              <div className="modal-content">
-                <span className="modal-content__close" onClick={closeModal}>
-                  X
-                </span>
-                <div>
-                  <input
-                    onChange={changeTheValue}
-                    defaultValue={current.name}
-                  ></input>
-                  <button onClick={setNewValue}>Save</button>
-                </div>
-              </div>
-            </Modal>
-          )}
         </ul>
       ) : (
         <Loader />
+      )}
+      {current && (
+        <Modal id="modal">
+          <div className="modal-content">
+            <span className="modal-content__close" onClick={closeModal}>
+              X
+            </span>
+            <div>
+              <input
+                onChange={changeTheValue}
+                defaultValue={current.name}
+              ></input>
+              <button onClick={setNewValue("new")}>Save</button>
+            </div>
+          </div>
+        </Modal>
       )}
     </>
   );
