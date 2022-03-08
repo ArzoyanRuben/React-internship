@@ -3,7 +3,7 @@ import "./User.css";
 
 export default function User({ user, showItems }) {
   const handleShowPosts = () => {
-    showItems(user.id);
+    showItems(user);
   };
 
   return (

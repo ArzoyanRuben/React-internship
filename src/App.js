@@ -6,6 +6,8 @@ import Home from "./pages/Home";
 import Albums from "./pages/Albums";
 import Users from "./pages/Users";
 import Table from "./pages/Table/Table";
+import Posts from "./components/Posts/Posts";
+import Photos from "./components/Photos/Photos";
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route exact path="/users" element={<Users />} />
-            <Route exact path="/albums" element={<Albums />} />
+            <Route exact path="/users/posts" element={<Posts />} />
+            <Route exact path="/users/albums" element={<Albums />} />
+            <Route exact path="/users/albums/photos" element={<Photos />} />
             <Route exact path="/table" element={<Table />} />
           </Routes>
         </div>

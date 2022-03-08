@@ -1,1 +1,1 @@
-export const navItems = [{ description: "Users" }, { description: "Albums" }, { description: "Table" }];
+export const navItems = [{ description: "Users", path:"users" }, { description: "Albums", path:"users/albums" }, { description: "Table", path:"table"}];

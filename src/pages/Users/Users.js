@@ -1,16 +1,16 @@
 import UsersList from "../../components/UsersList/UsersList";
-import { getUsers } from "../../API/useAPI";
-import { getPosts } from "../../API/postAPI";
+import { getItems } from "../../config/api";
 import Posts from "../../components/Posts/Posts";
 import List from "../../components/shared/List/List";
+import usersSlice from "../../store/usersSlice";
 
 export default function Users() {
+  const usersURL = `${process.env.REACT_APP_LIST_URL}/users`
   return (
     <List
-      listItemsGetter={getUsers}
-      modalItemsGetter={getPosts}
+      listItemsGetter={getItems(usersURL)}
       ListComponent={UsersList}
-      ModalComponent={Posts}
+      action={usersSlice.actions.add}
     />
   );
 }

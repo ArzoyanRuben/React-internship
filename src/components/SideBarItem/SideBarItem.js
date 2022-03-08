@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 
 import "./SideBarItem.css";
 
-export default function SideBarItem({ description }) {
-  let path = description.toLowerCase();
+export default function SideBarItem({ description, path }) {
   return (
     <li className="sidebar-item">
       <Link to={path}>
