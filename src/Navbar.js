@@ -7,7 +7,7 @@ function Navbar() {
             <div className='links'>
                 <div><Link to='/'>Users</Link></div>
                 <div><Link to='/albums'>Albums</Link></div>
-
+                <div><Link to='/tables'>Tables</Link></div>
             </div>
         </nav>
     )
