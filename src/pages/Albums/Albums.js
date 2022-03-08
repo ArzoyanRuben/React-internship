@@ -6,8 +6,6 @@ import albumsSlice from "../../store/albumsSlice";
 
 export default function Albums() {
   const albumsURL = `${process.env.REACT_APP_LIST_URL}/albums`
-
-  console.log(albumsSlice.actions)
   return (
     <List
       listItemsGetter={getItems(albumsURL)}

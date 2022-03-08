@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 
 import "./Modal.css";
 
-export default function Modal({ children, id}) {
+export default function Modal({ children, id }) {
   const el = useRef(document.createElement("div"));
 
   useEffect(() => {
