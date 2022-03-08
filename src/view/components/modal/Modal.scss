@@ -1,0 +1,16 @@
+.modal {
+  width: 450px;
+  height: 35px;
+  position: absolute;
+  right: 500px;
+  z-index: 1;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  background: palevioletred;
+  button{
+    background: none;
+    color: aliceblue;
+  }
+}
+

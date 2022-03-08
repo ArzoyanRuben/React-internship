@@ -1,0 +1,11 @@
+.navBar {
+  width: 100%;
+  height: 10vh;
+  background: palevioletred;
+  .navBar-links {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

@@ -1,0 +1,14 @@
+.photo{
+    width: 100%;
+    display: flex;
+    margin-left: 40px;
+    .photo-list{
+        width: 35%;
+        margin: 30px;
+        padding: 10px;
+        cursor: pointer;
+        color: rgb(182, 71, 90);
+        border: 1px solid black;
+    }
+}
+

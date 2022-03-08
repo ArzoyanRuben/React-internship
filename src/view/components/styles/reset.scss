@@ -4,10 +4,13 @@
   box-sizing: border-box;
   font-family: "Redressed", sans-serif;
   font-size: 24px;
-  background-color: black;
 }
 
-button{
-    cursor: pointer;
-    border: none;
+button {
+  cursor: pointer;
+  border: none;
+}
+
+a {
+  text-decoration: none;
 }

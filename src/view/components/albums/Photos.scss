@@ -1,0 +1,15 @@
+.photos{
+    width: 600px;
+    display: flex;
+    margin-top: 20px;
+    position: absolute;
+    right: 350px;
+    .modal_button{
+        margin-left: 50px;
+        background: none;
+        position: absolute;
+        top: 5px;
+        right: 20px;
+        color: rgb(251, 248, 248);
+    }
+}

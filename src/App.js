@@ -1,40 +1,33 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { Route, Switch } from "react-router-dom";
 
-import "./styles/fonts.scss";
-import "./styles/reset.scss";
+import Albums from "../src/view/components/albums/Albums";
+import Users from "../src/view/components/users/Users";
+import Homepage from "../src/view/components/homePage/HomePage";
+import Table from '../src/view/components/table/Table';
+import NavBar from "../src/view/components/navBar/NavBar";
+import "../src/view/components/styles/fonts.scss";
+import "../src/view/components/styles/reset.scss";
 import "./App.scss";
-import { Users } from "./users/Users";
+
 
 export const App = () => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) => {
-        setUsers(res.data);
-      })
-      .catch((error) => console.log("error"));
-  }, []);
-
   return (
     <div className="app">
-      <div className="app-text">
-        <p className="header">User list</p>
-        <div >
-          {users.map((user) => {
-            return (
-              <Users
-                key={user.id}
-                name={user.name}
-                username={user.username}
-                website={user.website}
-              />
-            );
-          })}
-        </div>
-      </div>
+      <NavBar/>
+      <Switch>
+        <Route exact path="/">
+          <Homepage />
+        </Route>
+        <Route path="/users">
+          <Users />
+        </Route>
+        <Route path="/albums">
+          <Albums />
+        </Route>
+        <Route path="/table">
+          <Table />
+        </Route>
+      </Switch>
     </div>
   );
 };
