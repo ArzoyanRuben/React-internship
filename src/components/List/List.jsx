@@ -1,55 +1,46 @@
 import React, { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import useCustomModal from "../../hooks/useCustomModal";
-import { CircularProgress } from "@mui/material";
 import { Box } from "@mui/system";
 import styled from "styled-components";
- 
-export const List = ({
-  ListComponent,
-  listUrl,
-  ModalComponent,
-  modalUrl
-}) => {
+import { Loader } from "../Loader/Loader";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+
+export const List = ({ ListComponent, listUrl, ModalComponent, modalUrl }) => {
   const { isOpen, toggle } = useCustomModal();
   const [itemId, setItemId] = useState([]);
-  const [listData] = useFetch(null, listUrl);
+
+  const { data, loading, error } = useFetch(listUrl);
+
   return (
     <>
-      {listData ? (
+      <Loader loading={loading} />
+      <ErrorMessage error={error} />
+      {data && (
         <StyledList>
-          {listData.map((data) => (
+          {data.map((item) => (
             <ListComponent
+              key={item.id}
               toggle={toggle}
               setItemId={setItemId}
-              key={data.id}
-              data={data}
-            />
-          ))}
-          {itemId && (
+              item={item}
+              />
+              ))}
+          {itemId?.length !== 0 && (
             <ModalComponent
-              itemId={itemId}
-              isOpen={isOpen}
-              toggle={toggle}
-              setData={setItemId}
-              modalUrl={modalUrl}
+            itemId={itemId}
+            isOpen={isOpen}
+            toggle={toggle}
+            setData={setItemId}
+            modalUrl={modalUrl}
             />
-          )}
+            )}
         </StyledList>
-      ) : (
-        <StyledLoader>
-          <CircularProgress size={70} />
-        </StyledLoader>
       )}
     </>
   );
 };
 
-const StyledLoader = styled(Box)`
-  position: absolute;
-  top: 50%;
-  right: 45%;
-`;
 const StyledList = styled(Box)`
   display: flex;
   flex-wrap: wrap;

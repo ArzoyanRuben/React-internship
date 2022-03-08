@@ -1,19 +1,31 @@
 import { useState, useEffect } from "react";
 
-export default function useFetch(initialVal, url) {
-  const [data, setData] = useState(initialVal);
+export default function useFetch(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getUserData = () => {
+    setLoading(true);
+    setData(null);
+    setError(null);
+
+    const getData = () => {
       return fetch(url).then((data) => data.json());
     };
 
-    getUserData().then((items) => {
+    getData().then((items) => {
       setData(items);
+      setLoading(false);
     });
-    setData(getUserData);
+    getData().catch((err) => {
+      setLoading(false);
+      setError("An error occured. So Awkward..");
+    });
 
+    setData(getData);
     return setData(null);
   }, []);
-  return [data];
+
+  return { data, loading, error };
 }

@@ -24,6 +24,7 @@ export const LeftPanel = () => {
     <LeftPanelStyled>
       <LinkStyled to="/">Users</LinkStyled>
       <LinkStyled to="/albums">Albums</LinkStyled>
+      <LinkStyled to="/table">Tables</LinkStyled>
     </LeftPanelStyled>
   );
 };
