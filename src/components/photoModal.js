@@ -1,17 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {getPhotos} from "../API/photosAPI";
+import React from 'react';
+
 import Photo from "./Photo";
+import useFetch from "../hooks/useFetch";
+import {photosUrl} from "../API/Api";
+
 
 function PhotoModal({id, userId, title, showPhotoModal, closePhotoModal }) {
-    const [photos, setPhotos] = useState([]);
 
-    useEffect(() => {
-        getPhotos().then(res => {
-            console.log(res)
-            setPhotos(res.data)
-        })
-            .catch(err => console.log(err))
-    }, [])
+    const [data] = useFetch(photosUrl)
+
     return showPhotoModal ? (
         <>
             {<div className="photo-modal" onClick={closePhotoModal}>
@@ -19,7 +16,7 @@ function PhotoModal({id, userId, title, showPhotoModal, closePhotoModal }) {
                     e.stopPropagation();
                 }}>
                     <span className="close" onClick={closePhotoModal}>&times;</span>
-                    { photos.map(photo => (userId === photo.id) ?  <Photo  url={photo.url} title={photo.title}/> : null
+                    { data.map(item => (userId === item.id) ?  <Photo  url={item.url} title={item.title}/> : null
                     )}
                 </div>
             </div>}

@@ -1,17 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import Users from "./Users";
 import {getPosts} from "../API/postsAPI";
-
+import useFetch from "../hooks/useFetch";
+import {postsUrl, usersUrl} from "../API/Api";
 function Modal({id1, name, showModal, closeModal}) {
-    const [posts, setPosts] = useState([]);
 
-    useEffect(() => {
-        getPosts().then(res => {
-            console.log(res)
-            setPosts(res.data)
-        })
-            .catch(err => console.log(err))
-    }, [])
+    const [data] = useFetch(postsUrl)
+
     return showModal ? (
         <>
             {<div className="modal" onClick={closeModal}>
@@ -21,11 +16,11 @@ function Modal({id1, name, showModal, closeModal}) {
                     <span className="close" onClick={closeModal}>&times;</span>
                     <div className="modal-title">Title: {name}</div>
 
-                    {posts.map(
-                        post =>
-                            (id1 === post.userId) ?
-                                <div key={post.id} className='modal-post'>
-                                    <p> . {post.title} </p>
+                    {data.map(
+                        item =>
+                            (id1 === item.userId) ?
+                                <div key={item.id} className='modal-post'>
+                                    <p> . {item.title} </p>
                                 </div> : null
                     )}
 

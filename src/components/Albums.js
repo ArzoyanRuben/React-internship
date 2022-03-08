@@ -1,15 +1,16 @@
 import React from 'react';
-
+import useFetch from "../hooks/useFetch";
+import {albumsUrl} from "../API/Api";
 import Photos from "./Photos";
 
-function Albums({albums}) {
-
+function Albums() {
+    const [data] = useFetch(albumsUrl)
     return (
         <div>
             <h2>TITLES OF ALBUMS</h2>
-            {albums.map(
-                album =>
-                    <Photos key={album.id} userId={album.userId} title={album.title}/>
+            {data.map(
+                item =>
+                    <Photos key={item.id} userId={item.userId} title={item.title}/>
             )}
 
         </div>
