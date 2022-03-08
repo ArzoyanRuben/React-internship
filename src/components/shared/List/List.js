@@ -26,8 +26,10 @@ export default function List({ listItemsGetter, ListComponent, action }) {
 
   const setNewValue = (type) => () => {
     if (type === "new") {
-      setListItems([{name: newValue.current, id: listItems.length}, ...listItems]);
-      console.log(newValue.current)
+      setListItems([
+        { name: newValue.current, id: listItems.length + 1 },
+        ...listItems,
+      ]);
     } else {
       setListItems(
         listItems.map((item) => {
@@ -37,6 +39,15 @@ export default function List({ listItemsGetter, ListComponent, action }) {
         })
       );
     }
+    setCurrent(null);
+  };
+
+  const deleteItem = () => {
+    setListItems(
+      listItems.filter((item) => {
+        return item.id !== current.id;
+      })
+    );
     setCurrent(null);
   };
 
@@ -68,6 +79,7 @@ export default function List({ listItemsGetter, ListComponent, action }) {
                 defaultValue={current.name}
               ></input>
               <button onClick={setNewValue("new")}>Save</button>
+              <button onClick={deleteItem}>delete</button>
             </div>
           </div>
         </Modal>
