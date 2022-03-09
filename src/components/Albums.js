@@ -8,11 +8,10 @@ function Albums() {
     return (
         <div>
             <h2>TITLES OF ALBUMS</h2>
-            {data.map(
+            {data && data.map(
                 item =>
                     <Photos key={item.id} userId={item.userId} title={item.title}/>
-            )}
-
+     )}
         </div>
     );
 }

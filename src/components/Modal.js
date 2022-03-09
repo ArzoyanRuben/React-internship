@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import Users from "./Users";
-import {getPosts} from "../API/postsAPI";
+import React from 'react';
 import useFetch from "../hooks/useFetch";
-import {postsUrl, usersUrl} from "../API/Api";
+import {postsUrl} from "../API/Api";
 function Modal({id1, name, showModal, closeModal}) {
 
     const [data] = useFetch(postsUrl)
@@ -32,5 +30,3 @@ function Modal({id1, name, showModal, closeModal}) {
 }
 
 export default Modal;
-
-

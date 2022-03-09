@@ -1,9 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {getTable} from "../API/tableAPI";
-import Photo from "./Photo";
-import VirtualizedTable from "./TableItem";
-import Users from "./Users";
-import MaterialTable from "material-table";
+import React from 'react';
+
 import TableItem from "./TableItem";
 
 

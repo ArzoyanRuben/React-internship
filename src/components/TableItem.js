@@ -1,6 +1,6 @@
 import React from 'react';
 import MaterialTable from "material-table";
-import {getTable} from "../API/tableAPI";
+
 function TableItem({tables}) {
     const data = [
         {name: 'Ani', age: 15},

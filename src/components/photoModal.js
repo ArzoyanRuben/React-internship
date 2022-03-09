@@ -12,11 +12,11 @@ function PhotoModal({id, userId, title, showPhotoModal, closePhotoModal }) {
     return showPhotoModal ? (
         <>
             {<div className="photo-modal" onClick={closePhotoModal}>
-                <div key={id} className="photo-modal-content" onClick={e => {
+                <div className="photo-modal-content" onClick={e => {
                     e.stopPropagation();
                 }}>
                     <span className="close" onClick={closePhotoModal}>&times;</span>
-                    { data.map(item => (userId === item.id) ?  <Photo  url={item.url} title={item.title}/> : null
+                    { data.map(item => (userId === item.id) ?  <Photo key={item.id} url={item.url} title={item.title}/> : null
                     )}
                 </div>
             </div>}

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import PhotoModal from "./photoModal";
-import Modal from "./Modal";
 
 function Photos({userId, title}) {
 
