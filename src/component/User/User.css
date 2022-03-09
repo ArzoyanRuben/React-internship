@@ -2,14 +2,16 @@
     display: flex;
     justify-content: space-between;
     padding: 5px;
+    border: 1px salmon;
     
 }
-.info-list:nth-child(odd){
+.info-list {
     background: rgba(97, 97, 138, 0.411);
+    
 }
 
 .modal{
-    background-color: rgba(97, 97, 138, 0);
+    background-color: rgb(97, 97, 138);
     padding: 15px;
     border: 2px solid grey;
     position: absolute;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import ModalPhotos from "../ModalPhotos/ModalPhotos";
+import "./Photos.css"
 
 
 
@@ -13,7 +14,7 @@ export default function Photos({ userId, title }) {
 
   return (
 
-    <div className="photo-s">
+    <div className="photo-list">
       <div> {title} </div>
       <button className="info-btn" onClick={toggleModal}>
         See photos

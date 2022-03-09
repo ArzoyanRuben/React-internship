@@ -10,7 +10,7 @@ export default function Users()  {
  
   return (
     
-        <div>
+        <div  className="info-list">
           {data.map((item) => {
               return (
                 <div>
