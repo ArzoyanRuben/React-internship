@@ -1,4 +1,7 @@
 .sidebar-item {
     cursor: pointer;
     list-style: none;
+    background-color: white;
+    padding: .8rem;
+    border-radius: 5px;
 }
