@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 
 import ModalPhotos from "../ModalPhotos/ModalPhotos";
 
+
+
 export default function Photos({ userId, title }) {
+
+  const [modalPhotos, setModalPhotos] = useState(false);
+  const toggleModal = () => {
+    setModalPhotos(!modalPhotos);
+  };
+
   return (
-    <div className="photo-container">
+
+    <div className="photo-s">
       <div> {title} </div>
       <button className="info-btn" onClick={toggleModal}>
-        See post
+        See photos
       </button>
-      {ModalPhotos && (
+       {modalPhotos && (
         <div onClick={toggleModal} className="overlay">
           <div className="modal">
             <button className="close-modal-btn" onClick={toggleModal}>
               X
             </button>
-            <ModalPhotos userId={userId} title={title} />
+            <ModalPhotos
+            userId={userId} 
+            title={title} />
           </div>
         </div>
       )}

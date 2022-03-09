@@ -8,10 +8,11 @@ import ModalPhotos from '../../component/ModalPhotos/ModalPhotos';
  export default function Albums() {
   const [data] = useFetch(ALBUM_URL)
   
+  
   return (
       <div>
           <h2>hello</h2>
-          {data.map(
+          {data && data.map(
               item =>
               <div>
                   <Photos key={item.id} userId={item.userId} title={item.title}/>

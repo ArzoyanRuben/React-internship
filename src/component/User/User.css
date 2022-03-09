@@ -9,13 +9,14 @@
 }
 
 .modal{
-    background-color: rgba(97, 97, 138, 0.411);
+    background-color: rgba(97, 97, 138, 0);
     padding: 15px;
     border: 2px solid grey;
     position: absolute;
     border-radius: 5px;
     top: 30%;
     left: 40%;
+    overflow: scroll;
 }
 
 .info-btn{
