@@ -7,10 +7,11 @@ function Albums() {
     const [data, loading, error] = useFetch(albumsUrl);
     if (loading) return <h1>Loading...</h1>
     if(error) console.log(error)
+
     return (
         <div>
             <h2>TITLES OF ALBUMS</h2>
-            {data && data.map(
+            {data?.map(
                 item =>
                     <Photos key={item.id} userId={item.userId} title={item.title}/>
      )}

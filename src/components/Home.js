@@ -8,7 +8,7 @@ function Home() {
     return (
         <div>
             <ul>
-                {data && data.map(item => (
+                {data?.map(item => (
                     <Users key={item.id}  id1={item.id} name={item.name} />
                 ))}
             </ul>

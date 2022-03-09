@@ -3,12 +3,11 @@ import React from 'react';
 import TableItem from "./TableItem";
 
 
-function Table({tables}) {
+function Table() {
 
     return (
         <div>
-           hi
-           <TableItem tables={tables}/>
+           <TableItem/>
         </div>
     );
 }
