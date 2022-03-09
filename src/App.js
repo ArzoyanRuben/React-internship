@@ -6,6 +6,7 @@ import Albums from "./Home/Albums/Albums";
 import LeftSideBar from "./Layout/LeftSideBar/LeftSideVar";
 
 import Header from "./Layout/Header/Header";
+import Table from "./Home/Table/Table";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Users />} />
             <Route path="/albums" element={<Albums />} />
+            <Route path="/Table" element={<Table />} />
           </Routes>
           
         </div>

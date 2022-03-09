@@ -8,6 +8,7 @@ export default function User({ name, username, website, id1 }) {
   const toggleModal = () => {
     setModal(!modal);
   };
+  
   return (
     <div className="info-list">
       <div className="info_item">
