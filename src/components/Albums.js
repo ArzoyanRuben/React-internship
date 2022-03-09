@@ -4,7 +4,9 @@ import {albumsUrl} from "../API/Api";
 import Photos from "./Photos";
 
 function Albums() {
-    const [data] = useFetch(albumsUrl)
+    const [data, loading, error] = useFetch(albumsUrl);
+    if (loading) return <h1>Loading...</h1>
+    if(error) console.log(error)
     return (
         <div>
             <h2>TITLES OF ALBUMS</h2>
