@@ -1,38 +1,32 @@
-import React, { useEffect, useState } from "react";
-import User from "../../component/User/User";
+import React from "react";
+
 import "./Users.css";
+import User  from "../../component/User/User";
+import useFetch from "../../component/Hook/useFetch/useFetch";
+import { USER_URL}   from "../../constants/Urls";
 
-
-function Users() {
-  const [users, setUsers] = useState([]);
-
-  const getUsers = () => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setUsers(data);
-       
-      });
-  };
-  useEffect(() => {
-    getUsers();
-  }, []);
-
-  console.log(users)
-
+export default function Users()  {
+  const [data] = useFetch(USER_URL)
+ 
   return (
-        <div className="users_info-box">
-          <div>
-            {users.map((users) => (
-              <User className="users_info" key={users.id} name={users.name}/>
-            ))
-            }
-            
-          </div>
+    
+        <div>
+          {data.map((item) => {
+              return (
+                <div>
+                  <User
+                   id1={item.id} 
+                    key={item.id}
+                    name={item.name}
+                    username={item.username}
+                    website={item.website}
+                  />
+                </div>
+              );
+            })}
         </div>
+     
   );
-}
+};
 
-export default Users;
+

@@ -1,35 +1,28 @@
-import React, { useEffect, useState } from "react";
-import Album from "../../component/Album/Album";
-import "./Albums.css";
+import React from 'react';
+import Photos from '../../component/Photos/Photos';
+import useFetch from '../../component/Hook/useFetch/useFetch';
+import {ALBUM_URL} from '../../constants/Urls'
+import ModalPhotos from '../../component/ModalPhotos/ModalPhotos';
 
-function Users() {
-  const [albums, setAlbums] = useState([]);
 
-  const getAlbums = () => {
-    fetch("https://jsonplaceholder.typicode.com/albums")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setAlbums(data);
-      });
-  };
-  useEffect(() => {
-    getAlbums();
-  }, []);
-
-  console.log(albums);
-
+ export default function Albums() {
+  const [data] = useFetch(ALBUM_URL)
+  
   return (
-    <div className="users-albums-box">
-      <h4>Albums Title</h4>
-      <div className="list-of-albums">
-        {albums.map((albums) => (
-          <Album key={albums.id} title={albums.title} userId={albums.userId} />
-        ))}
+      <div>
+          <h2>hello</h2>
+          {data.map(
+              item =>
+              <div>
+                  <Photos key={item.id} userId={item.userId} title={item.title}/>
+                  <ModalPhotos/>
+                  </div>
+                  
+          )}
+
       </div>
-    </div>
   );
 }
 
-export default Users;
+
+

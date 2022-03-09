@@ -1,8 +1,9 @@
-import "./User.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "../Modal/Modal";
 
-function User({ name }) {
+import "./User.css";
+
+export default function User({ name, username, website, id1 }) {
   const [modal, setModal] = useState(false);
   const toggleModal = () => {
     setModal(!modal);
@@ -10,7 +11,9 @@ function User({ name }) {
   return (
     <div className="info-list">
       <div className="info_item">
-        {name}
+        <p>{name}</p>
+        <p> {username}</p>
+        <p>{website}</p>
         <button className="info-btn" onClick={toggleModal}>
           See post
         </button>
@@ -21,12 +24,10 @@ function User({ name }) {
             <button className="close-modal-btn" onClick={toggleModal}>
               X
             </button>
-            <Modal name={name} />
+            <Modal name={name}  id1={id1}/>
           </div>
         </div>
       )}
     </div>
   );
 }
-
-export default User;

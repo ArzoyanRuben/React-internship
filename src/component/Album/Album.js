@@ -1,4 +1,5 @@
-import "./Album.css"
+
+ import "./Album.css"
 
  function Album( item ) {
     

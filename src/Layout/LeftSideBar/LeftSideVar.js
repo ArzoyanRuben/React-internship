@@ -8,6 +8,7 @@ function LeftSideBar(){
             <ul className="left-list">
                 <li><Link to='/'>Users</Link></li>
                 <li><Link to='/albums'>Albums</Link></li>
+                
             </ul>
         </div>
     )

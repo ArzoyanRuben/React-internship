@@ -4,3 +4,6 @@
     margin: 5px;
     padding: 10px;
 }
+.main-content {
+    display: flex;
+}

@@ -1,14 +1,24 @@
-import Photo from "../Photo/Photo";
+import React from "react";
 
- function Photos({ items, id }) {
+import ModalPhotos from "../ModalPhotos/ModalPhotos";
+
+export default function Photos({ userId, title }) {
   return (
-    <div className="photos">
-      {items.map((photo) => {
-        if (photo.id === id) {
-          return <Photo title={photo.title} url={photo.url} />;
-        }
-      })}
+    <div className="photo-container">
+      <div> {title} </div>
+      <button className="info-btn" onClick={toggleModal}>
+        See post
+      </button>
+      {ModalPhotos && (
+        <div onClick={toggleModal} className="overlay">
+          <div className="modal">
+            <button className="close-modal-btn" onClick={toggleModal}>
+              X
+            </button>
+            <ModalPhotos userId={userId} title={title} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-export default Photos

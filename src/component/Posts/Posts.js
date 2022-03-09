@@ -1,35 +1,28 @@
+
+import "./Posts.css";
 import Post from "../Post/Post";
 import React, { useEffect, useState } from "react";
+import useFetch from "../Hook/useFetch/useFetch";
 
-function Posts() {
-    const [posts, setPosts] = useState([]);
-  
-    const getPosts = () => {
-      fetch("https://jsonplaceholder.typicode.com/posts")
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          setPosts(data);
-        });
-    };
-    useEffect(() => {
-      getPosts();
-    }, []);
-  
-    console.log(posts);
-  
-    return (
-      <div className="users-albums-box">
-        <h4>Albums Title</h4>
-        <div className="list-of-albums">
-          {posts.map((posts) => (
-            <Post key={posts.id} title={posts.title} userId={posts.userId} />
-          ))}
+
+export default function Posts({ itemsGetter, id }) {
+  const [items] = useFetch(null, itemsGetter);
+
+  return (
+    <>
+      {items ? (
+        <div className="posts">
+          {items.map((post) => {
+            if (post.userId === id) {
+              return (
+                <Post title={post.title} key={id} body={post.body} />
+              );
+            }
+          })}
         </div>
-      </div>
-    );
-  }
-  
-  export default Posts;
-  
+      ) : (
+    null
+      )}
+    </>
+  );
+}
