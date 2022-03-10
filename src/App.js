@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import Albums from "./components/Albums";
 import {Routes, Route} from "react-router-dom";
 import Table from "./components/Table";
-
+import CRUD from "./components/CRUD"
 
 function App() {
 
@@ -18,6 +18,7 @@ function App() {
                     <Route path="/" element={<Home/>}/>
                     <Route path="/albums" element={<Albums/>}/>
                     <Route path="/tables" element={<Table/>}/>
+                    <Route path="/CRUD" element={<CRUD/>}/>
                 </Routes>
             </div>
         </div>

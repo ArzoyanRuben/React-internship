@@ -3,7 +3,10 @@ import { AutoSizer, Column, Table } from "react-virtualized";
 import clsx from "clsx";
 import { withStyles } from "@mui/styles";
 import { createTheme } from "@mui/material/styles";
+import { TableRow } from '@mui/material';
 import TableCell from "@mui/material/TableCell";
+import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
 
 
 const styles = (theme) => ({
@@ -28,7 +31,7 @@ const styles = (theme) => ({
         },
     },
     tableCell: {
-        flex: 1,
+        flex: 1
     },
     noClick: {
         cursor: "initial",
@@ -45,7 +48,7 @@ function MuiVirtualizedTable({headerHeight= 48,
     };
 
     const cellRenderer = ({ cellData, columnIndex }) => {
-        return (
+        return (<>
             <TableCell
                 component="div"
                 className={clsx(classes.tableCell, classes.flexContainer, {
@@ -60,12 +63,15 @@ function MuiVirtualizedTable({headerHeight= 48,
             >
                 {cellData}
             </TableCell>
+        </>
+
         );
     };
 
     const headerRenderer = ({ label, columnIndex }) => {
 
         return (
+            <>
             <TableCell
                 component="div"
                 className={clsx(
@@ -78,6 +84,10 @@ function MuiVirtualizedTable({headerHeight= 48,
             >
                 <span>{label}</span>
             </TableCell>
+
+
+
+            </>
         );
     };
 
@@ -110,11 +120,12 @@ function MuiVirtualizedTable({headerHeight= 48,
                                 cellRenderer={cellRenderer}
                                 dataKey={dataKey}
                                 {...other}
-                            />
+                                />
                         );
                     })}
                 </Table>
             )}
+
         </AutoSizer>
     );
 }
