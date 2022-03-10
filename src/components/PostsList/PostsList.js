@@ -1,11 +1,11 @@
-import "./Posts.css";
+import React from "react";
 import Post from "../Post/Post";
 import useFetch from "../../hooks/useFetch";
 import Loader from "../shared/Loader/Loader";
 
 const { v4: uuidv4 } = require("uuid");
 
-export default function Posts({ itemsGetter, id }) {
+ function Posts({ itemsGetter, id }) {
   const [items] = useFetch(null, itemsGetter);
 
   return (
@@ -26,3 +26,5 @@ export default function Posts({ itemsGetter, id }) {
     </>
   );
 } 
+
+export default React.memo(Posts)

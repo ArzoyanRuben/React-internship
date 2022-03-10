@@ -3,8 +3,7 @@ import { useDispatch } from "react-redux";
 
 export default function useFetch(initalVal, request, action) {
   const [data, setData] = useState(initalVal);
-  const dispatch = useDispatch();
-
+  let dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
       const data = await request();
@@ -13,10 +12,9 @@ export default function useFetch(initalVal, request, action) {
     fetchData();
   }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
     setData(data);
     dispatch(action(data));
-
-  }, [data])
+  }, [data]);
   return [data, setData];
 }
