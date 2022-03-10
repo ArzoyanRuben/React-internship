@@ -6,7 +6,7 @@ export default function SideBarItem({ description, path }) {
   return (
     <li className="sidebar-item">
       <Link to={path}>
-        <p>{description}</p>
+        <span>{description}</span>
       </Link>
     </li>
   );

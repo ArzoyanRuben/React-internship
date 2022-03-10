@@ -1,8 +1,13 @@
-export default function Photo({ title, url }) {
+export default function Photo({ photo, showItems, changeType }) {
+
+  const handleShowPosts = () => {
+    showItems(photo);
+    changeType()
+  };
     return (
-      <div>
-        <h3>{title}</h3>
-        <img src={`${url}`}/>
+      <div onClick={handleShowPosts}>
+        <h3>{photo.title}</h3>
+        <img src={`${photo.url}`}/>
       </div>
     );
   }

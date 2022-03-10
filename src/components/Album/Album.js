@@ -2,7 +2,7 @@ import "./Album.css"
 
 export default function Album({ item, showItems }) {
     const handleShowPhotos = () => {
-      showItems(item.userId);
+      showItems(item);
     };
      
     return (

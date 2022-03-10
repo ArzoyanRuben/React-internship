@@ -7,6 +7,7 @@ import "./LeftSideBar.css";
 import { navItems } from "../../constants/navItems.constant";
 import SideBarItem from "../../components/SideBarItem/SideBarItem";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const { v4: uuidv4 } = require("uuid");
 
@@ -22,9 +23,9 @@ export default function LeftSideBar() {
                 <Accordion>
                   <Link to={items[i].path}>
                     <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
+                      expandIcon={<ExpandMoreIcon/>}
                       aria-controls="panel1a-content"
-                      id="panel1a-header"
+                      
                     >
                       <Typography>{items[i].description}</Typography>
                     </AccordionSummary>

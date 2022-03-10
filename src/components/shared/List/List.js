@@ -6,6 +6,7 @@ import useFetch from "../../../hooks/useFetch";
 
 export default function List({ listItemsGetter, ListComponent, action }) {
   const [current, setCurrent] = useState(null);
+  const [type, setType] = useState(null)
   const newValue = useRef();
   const [listItems, setListItems] = useFetch(null, listItemsGetter, action);
 
@@ -51,6 +52,10 @@ export default function List({ listItemsGetter, ListComponent, action }) {
     setCurrent(null);
   };
 
+  const changeType = (type) => () => {
+     setType(type)
+  }
+
   return (
     <>
       {listItems ? (
@@ -58,11 +63,12 @@ export default function List({ listItemsGetter, ListComponent, action }) {
           <button
             onClick={() => {
               setCurrent("  ");
+              changeType("new")
             }}
           >
             + Add
           </button>
-          <ListComponent list={listItems} showItems={showItems} />
+          <ListComponent list={listItems} showItems={showItems} changeType={changeType("old")}/>
         </ul>
       ) : (
         <Loader />
@@ -78,7 +84,7 @@ export default function List({ listItemsGetter, ListComponent, action }) {
                 onChange={changeTheValue}
                 defaultValue={current.name}
               ></input>
-              <button onClick={setNewValue("new")}>Save</button>
+              <button onClick={setNewValue(type)}>Save</button>
               <button onClick={deleteItem}>delete</button>
             </div>
           </div>

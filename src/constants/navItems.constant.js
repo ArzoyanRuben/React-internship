@@ -6,7 +6,7 @@ export const navItems = [
       {
         description: "Albums",
         path: "users/albums",
-        subItems: [{ description: "Photos", path:"users/photos" }],
+        subItems: [{ description: "Photos", path:"users/albums/photos" }],
       },
       { description: "Posts", path:"users/posts" },
     ],

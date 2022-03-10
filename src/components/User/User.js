@@ -1,9 +1,10 @@
 import React from "react";
 import "./User.css";
 
-export default function User({ user, showItems }) {
+export default function User({ user, showItems, changeType }) {
   const handleShowPosts = () => {
     showItems(user);
+    changeType()
   };
 
   return (

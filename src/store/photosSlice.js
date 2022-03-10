@@ -5,7 +5,7 @@ const initialState = null;
 const photosSlice = createSlice({
   name: "photos",
   initialState,
-  extraReducers: {
+  reducers: {
     add: (state, action) => {
       state = action.payload;
     },

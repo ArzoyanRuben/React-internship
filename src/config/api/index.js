@@ -1,5 +1,5 @@
 export function getItems(endPoint) {
-  return async () => {
+  return async (type, headers, body) => {
     try {
       const response = await fetch(endPoint);
       const data = await response.json();

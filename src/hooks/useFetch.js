@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 export default function useFetch(initalVal, request, action) {
   const [data, setData] = useState(initalVal);
+
   let dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
@@ -16,5 +17,6 @@ export default function useFetch(initalVal, request, action) {
     setData(data);
     dispatch(action(data));
   }, [data]);
+
   return [data, setData];
 }

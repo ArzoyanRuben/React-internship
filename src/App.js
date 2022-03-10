@@ -7,7 +7,7 @@ import Albums from "./pages/Albums";
 import Users from "./pages/Users";
 import Table from "./pages/Table/Table";
 import Posts from "./pages/Posts";
-// import Photos from "./pages/Photos";
+import Photos from "./pages/Photos";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
             <Route exact path="/users" exact element={<Users />} />
             <Route exact path="/users/posts" element={<Posts />} />
             <Route exact path="/users/albums" element={<Albums />} />
-            {/* <Route exact path="/users/albums/photos" element={<Photos />} /> */}
+            <Route exact path="/users/albums/photos" element={<Photos />} />
             <Route exact path="/table" element={<Table />} />
             <Route path="*" element={<Home />} />
           </Routes>
