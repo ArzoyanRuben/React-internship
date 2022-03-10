@@ -7,10 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import SaveIcon from '@mui/icons-material/Save';
 import CancelIcon from '@mui/icons-material/Close';
-import  jsPDF from "jspdf";
-import 'jspdf-autotable';
-import autoTable from "jspdf-autotable";
-
+import {GridToolbarExport} from '@mui/x-data-grid';
 import {
     useGridApiRef,
     DataGridPro,
@@ -64,11 +61,11 @@ const rows = [
 ];
 
 function EditToolbar(props) {
-    const { apiRef } = props;
+    const {apiRef} = props;
 
     const handleClick = () => {
         const id = randomId();
-        apiRef.current.updateRows([{ id, isNew: true }]);
+        apiRef.current.updateRows([{id, isNew: true}]);
         apiRef.current.setRowMode(id, 'edit');
         // Wait for the grid to render with the new row
         setTimeout(() => {
@@ -79,27 +76,13 @@ function EditToolbar(props) {
             apiRef.current.setCellFocus(id, 'name');
         });
     };
-    const downloadPdf = () => {
-    const doc = new jsPDF()
-        doc.text("Table details", 20, 10)
-      /*  doc.autoTable({
-            columns:columns.map(col => ({...col, dataKey: col.field})),
-            body: apiRef
-        })*/
-        doc.save('table.pdf')
-    }
+
     return (
         <GridToolbarContainer>
-            <Button color="primary" startIcon={<AddIcon />} onClick={handleClick}>
+            <Button color="primary" startIcon={<AddIcon/>} onClick={handleClick}>
                 Add record
             </Button>
-    <Button onClick={downloadPdf}>Export</Button>
-           {/* actions={[{
-            icon: () => <button>Export</button>,
-            tooltip: "Export to pdf",
-            onClick: () => downloadPdf(),
-            isFreeAction: true
-        }]}*/}
+            <GridToolbarExport style={{marginLeft: '15px', fontSize: '14px'}}/>
         </GridToolbarContainer>
     );
 }
@@ -137,13 +120,13 @@ export default function FullFeaturedCrudGrid() {
         if (isValid) {
             apiRef.current.setRowMode(id, 'view');
             const row = apiRef.current.getRow(id);
-            apiRef.current.updateRows([{ ...row, isNew: false }]);
+            apiRef.current.updateRows([{...row, isNew: false}]);
         }
     };
 
     const handleDeleteClick = (id) => (event) => {
         event.stopPropagation();
-        apiRef.current.updateRows([{ id, _action: 'delete' }]);
+        apiRef.current.updateRows([{id, _action: 'delete'}]);
     };
 
     const handleCancelClick = (id) => (event) => {
@@ -152,15 +135,14 @@ export default function FullFeaturedCrudGrid() {
 
         const row = apiRef.current.getRow(id);
         if (row.isNew) {
-            apiRef.current.updateRows([{ id, _action: 'delete' }]);
+            apiRef.current.updateRows([{id, _action: 'delete'}]);
         }
     };
 
 
-
     const columns = [
-        { field: 'name', headerName: 'Name', width: 180, editable: true },
-        { field: 'age', headerName: 'Age', type: 'number', editable: true },
+        {field: 'name', headerName: 'Name', width: 180, editable: true},
+        {field: 'age', headerName: 'Age', type: 'number', editable: true},
         {
             field: 'dateCreated',
             headerName: 'Date Created',
@@ -181,19 +163,19 @@ export default function FullFeaturedCrudGrid() {
             headerName: 'Actions',
             width: 100,
             cellClassName: 'actions',
-            getActions: ({ id }) => {
+            getActions: ({id}) => {
                 const isInEditMode = apiRef.current.getRowMode(id) === 'edit';
 
                 if (isInEditMode) {
                     return [
                         <GridActionsCellItem
-                            icon={<SaveIcon />}
+                            icon={<SaveIcon/>}
                             label="Save"
                             onClick={handleSaveClick(id)}
                             color="primary"
                         />,
                         <GridActionsCellItem
-                            icon={<CancelIcon />}
+                            icon={<CancelIcon/>}
                             label="Cancel"
                             className="textPrimary"
                             onClick={handleCancelClick(id)}
@@ -204,14 +186,14 @@ export default function FullFeaturedCrudGrid() {
 
                 return [
                     <GridActionsCellItem
-                        icon={<EditIcon />}
+                        icon={<EditIcon/>}
                         label="Edit"
                         className="textPrimary"
                         onClick={handleEditClick(id)}
                         color="inherit"
                     />,
                     <GridActionsCellItem
-                        icon={<DeleteIcon />}
+                        icon={<DeleteIcon/>}
                         label="Delete"
                         onClick={handleDeleteClick(id)}
                         color="inherit"
@@ -246,7 +228,7 @@ export default function FullFeaturedCrudGrid() {
                     Toolbar: EditToolbar,
                 }}
                 componentsProps={{
-                    toolbar: { apiRef },
+                    toolbar: {apiRef},
                 }}
             />
         </Box>

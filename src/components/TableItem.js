@@ -1,12 +1,9 @@
 import * as React from "react";
-import { AutoSizer, Column, Table } from "react-virtualized";
+import {AutoSizer, Column, Table} from "react-virtualized";
 import clsx from "clsx";
-import { withStyles } from "@mui/styles";
-import { createTheme } from "@mui/material/styles";
-import { TableRow } from '@mui/material';
+import {withStyles} from "@mui/styles";
+import {createTheme} from "@mui/material/styles";
 import TableCell from "@mui/material/TableCell";
-import AddIcon from "@mui/icons-material/Add";
-import EditIcon from "@mui/icons-material/Edit";
 
 
 const styles = (theme) => ({
@@ -38,53 +35,53 @@ const styles = (theme) => ({
     },
 });
 
-function MuiVirtualizedTable({headerHeight= 48,
-                                 rowHeight = 48, classes, columns, ...tableProps}) {
+function MuiVirtualizedTable({
+                                 headerHeight = 48,
+                                 rowHeight = 48, classes, columns, ...tableProps
+                             }) {
 
-    const getRowClassName = ({ index }) => {
+    const getRowClassName = ({index}) => {
         return clsx(classes.tableRow, classes.flexContainer, {
             [classes.tableRowHover]: index !== -1
         });
     };
 
-    const cellRenderer = ({ cellData, columnIndex }) => {
+    const cellRenderer = ({cellData, columnIndex}) => {
         return (<>
-            <TableCell
-                component="div"
-                className={clsx(classes.tableCell, classes.flexContainer, {
-                })}
-                variant="body"
-                style={{ height: rowHeight }}
-                align={
-                    (columnIndex != null && columns[columnIndex].numeric) || false
-                        ? "right"
-                        : "left"
-                }
-            >
-                {cellData}
-            </TableCell>
-        </>
+                <TableCell
+                    component="div"
+                    className={clsx(classes.tableCell, classes.flexContainer, {})}
+                    variant="body"
+                    style={{height: rowHeight}}
+                    align={
+                        (columnIndex != null && columns[columnIndex].numeric) || false
+                            ? "right"
+                            : "left"
+                    }
+                >
+                    {cellData}
+                </TableCell>
+            </>
 
         );
     };
 
-    const headerRenderer = ({ label, columnIndex }) => {
+    const headerRenderer = ({label, columnIndex}) => {
 
         return (
             <>
-            <TableCell
-                component="div"
-                className={clsx(
-                    classes.tableCell,
-                    classes.flexContainer,
-                )}
-                variant="head"
-                style={{ height: headerHeight }}
-                align={columns[columnIndex].numeric || false ? "right" : "left"}
-            >
-                <span>{label}</span>
-            </TableCell>
-
+                <TableCell
+                    component="div"
+                    className={clsx(
+                        classes.tableCell,
+                        classes.flexContainer,
+                    )}
+                    variant="head"
+                    style={{height: headerHeight}}
+                    align={columns[columnIndex].numeric || false ? "right" : "left"}
+                >
+                    <span>{label}</span>
+                </TableCell>
 
 
             </>
@@ -93,7 +90,7 @@ function MuiVirtualizedTable({headerHeight= 48,
 
     return (
         <AutoSizer>
-            {({ height, width }) => (
+            {({height, width}) => (
                 <Table
                     height={height}
                     width={width}
@@ -106,7 +103,7 @@ function MuiVirtualizedTable({headerHeight= 48,
                     {...tableProps}
                     rowClassName={getRowClassName}
                 >
-                    {columns.map(({ dataKey, ...other }, index) => {
+                    {columns.map(({dataKey, ...other}, index) => {
                         return (
                             <Column
                                 key={dataKey}
@@ -120,7 +117,7 @@ function MuiVirtualizedTable({headerHeight= 48,
                                 cellRenderer={cellRenderer}
                                 dataKey={dataKey}
                                 {...other}
-                                />
+                            />
                         );
                     })}
                 </Table>
@@ -131,7 +128,7 @@ function MuiVirtualizedTable({headerHeight= 48,
 }
 
 const defaultTheme = createTheme();
-const VirtualizedTable = withStyles(styles, { defaultTheme })(
+const VirtualizedTable = withStyles(styles, {defaultTheme})(
     MuiVirtualizedTable
 );
 
