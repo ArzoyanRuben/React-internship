@@ -11,6 +11,7 @@ export default function Photos() {
       listItemsGetter={getItems(photosURL)}
       ListComponent={PhotosList}
       action={photosSlice.actions.add}
+      list="photos"
     />
   );
 }

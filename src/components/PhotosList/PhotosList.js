@@ -9,10 +9,10 @@ export default function PhotosList({ list, showItems, changeType}) {
 
   return (
     <>
-    {albums.map((album) => {
+    {/* {albums.map((album) => {
       let photos = list.filter((item) => item.id === album.id);
       
-    }
+    } */}
       {list ? (
         <div className="photos">
           {list.map((photo) => {

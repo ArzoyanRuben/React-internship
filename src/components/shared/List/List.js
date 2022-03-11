@@ -4,11 +4,13 @@ import "./List.css";
 import Modal from "../Modal";
 import useFetch from "../../../hooks/useFetch";
 
-export default function List({ listItemsGetter, ListComponent, action }) {
+export default function List({ listItemsGetter, ListComponent, action, list }) {
   const [current, setCurrent] = useState(null);
   const [type, setType] = useState(null)
   const newValue = useRef();
   const [listItems, setListItems] = useFetch(null, listItemsGetter, action);
+
+  console.log(listItems)
 
   const closeModal = () => {
     setCurrent(null);
@@ -35,7 +37,7 @@ export default function List({ listItemsGetter, ListComponent, action }) {
       setListItems(
         listItems.map((item) => {
           return item.id === current.id
-            ? { ...item, name: newValue.current }
+            ? list==="photos"? { ...item, url: newValue.current } : { ...item, name: newValue.current } 
             : item;
         })
       );
@@ -80,7 +82,7 @@ export default function List({ listItemsGetter, ListComponent, action }) {
               X
             </span>
             <div>
-              <input
+              <input type={list==="photos"? "file" : "text"}
                 onChange={changeTheValue}
                 defaultValue={current.name}
               ></input>
