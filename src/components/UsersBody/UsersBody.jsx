@@ -3,10 +3,10 @@ import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 import "../../App.css";
 
-export const UsersBody = ({ item, setItemId, toggle }) => {
+export const UsersBody = ({ item, setItem, toggle }) => {
   const modalToggle = () => {
     toggle();
-    setItemId(item.id);
+    setItem(item)
   };
   return (
     <Box className="cards" onClick={modalToggle}>

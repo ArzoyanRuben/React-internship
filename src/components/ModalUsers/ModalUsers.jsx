@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import useFetch from "../../hooks/useFetch";
 import { Box } from "@mui/system";
-import { Button, Typography } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { Loader } from "../Loader/Loader";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 
@@ -65,12 +65,17 @@ export const ModalUsers = ({ setData, itemId, modalUrl, isOpen, toggle }) => {
                 </Box>
               </Button>
               <Box className="modal-header">
+                <TextField
+                  id="outlined-name"
+                  label="Name"
+                  value='rerer'
+                // onChange={(e) => setItem(e)}
+                />
+                <Button>add</Button>
                 {data.map((data) => (
                   <Fragment key={data.id}>
                     {data.userId === itemId ? (
-                      <Box key={data.id}>
-                        <Typography variant="overline">{data.body}</Typography>
-                      </Box>
+                      <Typography key={data.id} variant="overline">{data.body}</Typography>
                     ) : (
                       ""
                     )}

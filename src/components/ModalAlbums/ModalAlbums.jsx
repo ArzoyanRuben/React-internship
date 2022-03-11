@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import useFetch from "../../hooks/useFetch";
-import { Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { Loader } from "./../Loader/Loader";
 import { ErrorMessage } from "./../ErrorMessage/ErrorMessage";
@@ -12,7 +12,6 @@ export const ModalAlbums = ({ modalUrl, itemId, setData, toggle, isOpen }) => {
     setData(null);
     toggle();
   };
-
   return (
     <>
       {loading && (
@@ -44,42 +43,44 @@ export const ModalAlbums = ({ modalUrl, itemId, setData, toggle, isOpen }) => {
         </>
       )}
       <ErrorMessage error={error} />
+
       {isOpen && data ? (
         <>
-          <Box className="modal-overlay" />
-          <Box className="modal-wrapper" role="dialog">
-            <Box className="modal">
-              <Button
+          <div className="modal-overlay" />
+          <div className="modal-wrapper" role="dialog">
+            <div className="modal">
+              <button
                 type="button"
                 className="modal-close-button"
                 data-dismiss="modal"
                 aria-label="Close"
                 onClick={closeModal}
               >
-                <Box
+                <div
                   sx={{ fontSize: 30 }}
                   component="div"
                   display="inline"
                   aria-hidden="true"
                 >
                   &times;
-                </Box>
-              </Button>
-              <Box className="modal-header">
+                </div>
+              </button>
+              <div className="modal-header">
                 {data.map((item) => (
                   <Fragment key={item.id}>
-                    {item.albumId === itemId ? (
-                      <Box key={item.id}>
-                        <Typography variant="overline">{item.title}</Typography>
-                      </Box>
+                    {item.id === itemId ? (
+                      <>
+                        <p>{item.title}</p>
+                        <img src={`${item.url}`} alt="imgUrl" />
+                      </>
                     ) : (
                       ""
                     )}
                   </Fragment>
                 ))}
-              </Box>
-            </Box>
-          </Box>
+              </div>
+            </div>
+          </div>
         </>
       ) : (
         ""

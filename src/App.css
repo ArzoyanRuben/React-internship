@@ -137,18 +137,19 @@ li {
   height: 500px;
 }
 
-
 table {
   text-align: left;
   position: relative;
-  border-collapse: collapse; 
+  border-collapse: collapse;
   background-color: #f6f6f6;
-}/* Spacing */
-td, th {
+} /* Spacing */
+td,
+th {
   border: 1px solid #999;
   padding: 20px;
 }
 th {
+  width: 100px;
   background: rgb(122, 122, 122);
   color: white;
   border-radius: 0;
@@ -156,14 +157,17 @@ th {
   top: 0;
   padding: 10px;
 }
-.primary{
-  background-color: #000000
+.primary {
+  background-color: #000000;
 }
 
-tfoot > tr  {
+tfoot > tr {
   background: black;
   color: white;
 }
-tbody > tr:hover {
+td:hover {
   background-color: #6b6b6b;
+}
+.col_hover:hover {
+  background-color: #f6f6f6;
 }
