@@ -3,10 +3,11 @@ import Loader from "../Loader/Loader";
 import "./List.css";
 import Modal from "../Modal";
 import useFetch from "../../../hooks/useFetch";
+import { elementTypeAcceptingRef } from "@mui/utils";
 
 export default function List({ listItemsGetter, ListComponent, action, list }) {
   const [current, setCurrent] = useState(null);
-  const [type, setType] = useState(null);
+  const typeRef = useRef()
   const newValue = useRef();
   const [listItems, setListItems] = useFetch(null, listItemsGetter, action);
 
@@ -56,7 +57,7 @@ export default function List({ listItemsGetter, ListComponent, action, list }) {
   };
 
   const changeType = (type) => () => {
-    setType(type);
+    typeRef.current = type
   };
 
   return (
@@ -66,7 +67,7 @@ export default function List({ listItemsGetter, ListComponent, action, list }) {
           <button
             onClick={() => {
               setCurrent("  ");
-              setType("new");
+              typeRef.current = "new"
             }}
           >
             + Add
@@ -92,7 +93,7 @@ export default function List({ listItemsGetter, ListComponent, action, list }) {
                 onChange={changeTheValue}
                 defaultValue={current.name}
               ></input>
-              <button onClick={setNewValue(type)}>Save</button>
+              <button onClick={setNewValue(typeRef.current)}>Save</button>
               <button onClick={deleteItem}>delete</button>
             </div>
           </div>
