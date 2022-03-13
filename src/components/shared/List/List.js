@@ -81,7 +81,7 @@ export default function List({ listItemsGetter, ListComponent, action, list }) {
         <Loader />
       )}
       {current && (
-        <Modal id="modal">
+        <Modal>
           <div className="modal-content">
             <span className="modal-content__close" onClick={closeModal}>
               X
