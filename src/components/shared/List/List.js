@@ -6,11 +6,9 @@ import useFetch from "../../../hooks/useFetch";
 
 export default function List({ listItemsGetter, ListComponent, action, list }) {
   const [current, setCurrent] = useState(null);
-  const [type, setType] = useState(null)
+  const [type, setType] = useState(null);
   const newValue = useRef();
   const [listItems, setListItems] = useFetch(null, listItemsGetter, action);
-
-  console.log(listItems)
 
   const closeModal = () => {
     setCurrent(null);
@@ -28,6 +26,7 @@ export default function List({ listItemsGetter, ListComponent, action, list }) {
   };
 
   const setNewValue = (type) => () => {
+
     if (type === "new") {
       setListItems([
         { name: newValue.current, id: listItems.length + 1 },
@@ -37,7 +36,9 @@ export default function List({ listItemsGetter, ListComponent, action, list }) {
       setListItems(
         listItems.map((item) => {
           return item.id === current.id
-            ? list==="photos"? { ...item, url: newValue.current } : { ...item, name: newValue.current } 
+            ? list === "photos"
+              ? { ...item, url: newValue.current }
+              : { ...item, name: newValue.current }
             : item;
         })
       );
@@ -55,8 +56,8 @@ export default function List({ listItemsGetter, ListComponent, action, list }) {
   };
 
   const changeType = (type) => () => {
-     setType(type)
-  }
+    setType(type);
+  };
 
   return (
     <>
@@ -65,12 +66,16 @@ export default function List({ listItemsGetter, ListComponent, action, list }) {
           <button
             onClick={() => {
               setCurrent("  ");
-              changeType("new")
+              setType("new");
             }}
           >
             + Add
           </button>
-          <ListComponent list={listItems} showItems={showItems} changeType={changeType("old")}/>
+          <ListComponent
+            list={listItems}
+            showItems={showItems}
+            changeType={changeType("old")}
+          />
         </ul>
       ) : (
         <Loader />
@@ -82,7 +87,8 @@ export default function List({ listItemsGetter, ListComponent, action, list }) {
               X
             </span>
             <div>
-              <input type={list==="photos"? "file" : "text"}
+              <input
+                type={list === "photos" ? "file" : "text"}
                 onChange={changeTheValue}
                 defaultValue={current.name}
               ></input>
