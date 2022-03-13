@@ -30,7 +30,7 @@ export default function LeftSideBar() {
                   </Link>
                   <AccordionDetails>
                     {printNavItems(items[i].subItems).map((item) => {
-                      return <Typography>{item}</Typography>;
+                      return <Typography key={uuidv4()}>{item}</Typography>;
                     })}
                   </AccordionDetails>
                 </Accordion>

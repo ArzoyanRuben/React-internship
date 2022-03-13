@@ -3,7 +3,6 @@ import Loader from "../Loader/Loader";
 import "./List.css";
 import Modal from "../Modal";
 import useFetch from "../../../hooks/useFetch";
-import { elementTypeAcceptingRef } from "@mui/utils";
 
 export default function List({ listItemsGetter, ListComponent, action, list }) {
   const [current, setCurrent] = useState(null);
