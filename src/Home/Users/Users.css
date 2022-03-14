@@ -38,8 +38,12 @@ body.active-modal {
 }
 
 .info-list {
-    background: rgba(97, 97, 138, 0.411);
+    background: #d3eee4;
     margin: 5px;
     border: 2px solid gray;
     border-radius: 5px;
+}
+.info-list  div {
+    background-color: rgb(124, 160, 148);
+    margin: 5px;
 }

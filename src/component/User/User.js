@@ -10,7 +10,7 @@ export default function User({ name, username, website, id1 }) {
   };
   
   return (
-    <div className="info-list">
+    <div >
       <div className="info_item">
         <p>{name}</p>
         <p> {username}</p>

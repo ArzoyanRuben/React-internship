@@ -2,13 +2,11 @@
     display: flex;
     justify-content: space-between;
     padding: 5px;
-    border: 1px salmon;
+    background-color: rgb(206, 241, 230);
+    
     
 }
-.info-list {
-    background: rgba(97, 97, 138, 0.411);
-    
-}
+
 
 .modal{
     background-color: rgb(97, 97, 138);

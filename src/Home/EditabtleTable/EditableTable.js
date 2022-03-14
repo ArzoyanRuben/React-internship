@@ -35,7 +35,7 @@ export default function EditableTable() {
     newFormData[fieldName] = fieldValue;
 
     setAddFormData(newFormData);
-    console.log("hello");
+  
   };
   const handleEditFormChange = (event) => {
     event.preventDefault();
