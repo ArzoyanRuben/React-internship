@@ -9,7 +9,7 @@ function LeftSideBar(){
                 <li><Link to='/'>Users</Link></li>
                 <li><Link to='/albums'>Albums</Link></li>
                 <li><Link to='/table'>Table</Link></li>
-                
+                <li><Link to='/editabletable'>EditableTable</Link></li> 
             </ul>
         </div>
     )

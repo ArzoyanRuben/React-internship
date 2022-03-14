@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Users from "./Home/Users/Users";
 import Albums from "./Home/Albums/Albums";
-import LeftSideBar from "./Layout/LeftSideBar/LeftSideVar";
+import LeftSideBar from "./Layout/LeftSideBar/LeftSideBar";
 
 import Header from "./Layout/Header/Header";
 import Table from "./Home/Table/Table";
+import EditableTable from "./Home/EditabtleTable/EditableTable";
+import Tabel from "./component/Tabel"
 
 function App() {
   return (
@@ -18,9 +20,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Users />} />
             <Route path="/albums" element={<Albums />} />
-            <Route path="/Table" element={<Table />} />
+            <Route path="/table" element={<Table />} />
+            <Route exact path="/editabletable" element={<EditableTable />} />
           </Routes>
-          
+          {/* <Tabel/> */}
         </div>
       </div>
     </div>
