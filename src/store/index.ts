@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 import albumsSlice from "./albumsSlice";
 import photosSlice from "./photosSlice";
 import usersSlice from "./usersSlice";
@@ -14,3 +15,6 @@ export const store = configureStore({
     table: tableSlice.reducer,
   },
 });
+
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch = () => useDispatch<AppDispatch>()

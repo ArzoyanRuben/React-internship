@@ -1,14 +1,13 @@
 import UsersList from "../../components/UsersList/UsersList";
-import { getItems } from "../../config/api";
-import List from "../../components/shared/List/List";
+import Lists from "../../components/shared/Lists/Lists";
 import usersSlice from "../../store/usersSlice";
 
 export default function Users() {
   const usersURL = `${process.env.REACT_APP_LIST_URL}/users`;
 
   return (
-    <List
-      listItemsGetter={getItems(usersURL)}
+    <Lists
+      listItemsGetter={usersURL}
       ListComponent={UsersList}
       action={usersSlice.actions.add}
     />

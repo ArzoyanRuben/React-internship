@@ -1,13 +1,12 @@
 import Paper from "@mui/material/Paper";
 import Loader from "../../components/shared/Loader/Loader";
 import VirtualizedTable from "../../components/VirtualizedTable/VirtualizedTable";
-import { getItems } from "../../config/api";
 import useFetch from "../../hooks/useFetch";
 import tableSlice from "../../store/tableSlice";
 
 export default function Table() {
   const tableURL = process.env.REACT_APP_TABLE_URL;
-  const [tableItems] = useFetch(null, getItems(tableURL), tableSlice.actions.add);
+  const [tableItems] = useFetch(null, tableURL, tableSlice.actions.add);
 
   return (
     <>
