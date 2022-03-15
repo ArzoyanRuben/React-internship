@@ -1,4 +1,7 @@
 import Paper from "@mui/material/Paper";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import Loader from "../../components/shared/Loader/Loader";
 import VirtualizedTable from "../../components/VirtualizedTable/VirtualizedTable";
 import useFetch from "../../hooks/useFetch";
@@ -6,11 +9,17 @@ import tableSlice from "../../store/tableSlice";
 
 export default function Table() {
   const tableURL = process.env.REACT_APP_TABLE_URL;
-  const [tableItems] = useFetch(null, tableURL, tableSlice.actions.add);
+  const [tableItems, error, setTableItems] = useFetch(tableURL);
+
+  const dipatch = useDispatch();
+
+  useEffect(() => {
+    dipatch(tableSlice.actions.add(tableItems));
+  }, [tableItems]);
 
   return (
     <>
-      {tableItems ? (
+      {tableItems.length > 0 ? (
         <Paper style={{ height: 400, width: "100%" }}>
           <VirtualizedTable
             rowCount={tableItems.length}
@@ -23,7 +32,7 @@ export default function Table() {
           />
         </Paper>
       ) : (
-        <Loader/>
+        <Loader />
       )}
     </>
   );

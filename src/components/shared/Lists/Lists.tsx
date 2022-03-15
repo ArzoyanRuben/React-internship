@@ -1,6 +1,5 @@
 import {
   FunctionComponent,
-  ReducerAction,
   useCallback,
   useRef,
   useState,
