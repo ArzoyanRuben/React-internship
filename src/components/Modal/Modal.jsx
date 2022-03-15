@@ -1,17 +1,49 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import '../../App.css';
 import { Box } from '@mui/system';
-import { Button, Input, TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 
 export const Modal = ({
-    toggle,
     tableModal,
-    listModal
+    listModal,
+    isOpenButton,
+
+    toggle,
+    setNewItem,
+    newItem,
+    data,
+    setData,
+    url,
+    isUsers,
+    curKey
 }) => {
-    const closeModal = () => {
+    const handleUsersAddItem = (e) => {
+        e.preventDefault();
+        fetch(url
+            // , {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(data)
+            // }
+        ).then((res) => {
+            if (res.status === 200) {
+                setData([
+                    ...data,
+                    isUsers ? { id: data.length + 1, name: newItem, }
+                        : { userId: data.length + 1, id: data.length + 1, title: newItem }
+                ])
+            }
+        })
         toggle();
+        setNewItem('')
     }
-    // console.log(isOpen, 'isopen')
+    const handleChangeItem = (e) => {
+        e.preventDefault();
+        setData([
+            ...data,
+            { test: newItem }
+        ])
+    }
     return (
         <>
             {tableModal &&
@@ -23,7 +55,7 @@ export const Modal = ({
                                 className="modal-close-button"
                                 data-dismiss="modal"
                                 aria-label="Close"
-                                onClick={closeModal}
+                                onClick={toggle}
                             >
                                 <Box
                                     sx={{ fontSize: 30 }}
@@ -37,18 +69,17 @@ export const Modal = ({
                             <Box className="modal-header">
                                 <TextField
                                     id="outlined-name"
-                                    label="Name"
-                                    // value={item?.name}
-                                    // onChange={(e) => setItem(e)}
-                                    value='value'
+                                    label="Enter new value"
+                                    onChange={(e) => setNewItem(e.target.value)}
+                                    value={newItem}
                                 />
-                                <Button variant='outlined'>Submit Changes</Button>
+                                <Button onClick={handleChangeItem} variant='outlined'>Submit Changes</Button>
                             </Box>
                         </Box>
                     </Box>
                 </>
             }
-            {listModal &&
+            {isOpenButton && listModal &&
                 <>
                     <Box className="modal-overlay" />
                     <Box className="modal-wrapper" role="dialog">
@@ -57,7 +88,7 @@ export const Modal = ({
                                 className="modal-close-button"
                                 data-dismiss="modal"
                                 aria-label="Close"
-                                onClick={closeModal}
+                                onClick={toggle}
                             >
                                 <Box
                                     sx={{ fontSize: 30 }}
@@ -71,12 +102,12 @@ export const Modal = ({
                             <Box className="modal-header">
                                 <TextField
                                     id="outlined-name"
-                                    label="Name"
-                                    // value={item?.name}
-                                    // onChange={(e) => setItem(e)}
-                                    value='aaaaaaaaaaaaaaaa'
+                                    label="enter new name"
+                                    onChange={(e) => setNewItem(e.target.value)}
+                                    value={newItem}
                                 />
-                                <Button variant='outlined'>Saaaaubmit Changes</Button>
+                                {!newItem && <Button onClick={handleUsersAddItem} variant='outlined' disabled>Submit Changes</Button>}
+                                {newItem && <Button onClick={handleUsersAddItem} variant='outlined'>Submit Changes</Button>}
                             </Box>
                         </Box>
                     </Box>

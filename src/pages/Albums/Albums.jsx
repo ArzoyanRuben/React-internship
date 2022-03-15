@@ -11,6 +11,7 @@ export const Albums = () => {
       listUrl={albumUrl}
       ModalComponent={ModalAlbums}
       modalUrl={photoUrl}
+      isUsers={false}
     />
   );
 };

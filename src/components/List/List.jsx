@@ -6,13 +6,14 @@ import styled from "styled-components";
 import { Loader } from "../Loader/Loader";
 import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import { AddButton } from './../AddButton/AddButton';
+import { v4 as uuid } from 'uuid';
 
-export const List = ({ ListComponent, listUrl, ModalComponent, modalUrl }) => {
+export const List = ({ ListComponent, listUrl, ModalComponent, modalUrl, isUsers }) => {
   const { isOpen, toggle } = useCustomModal();
+  const { data, setData, setLoading, loading, error } = useFetch(listUrl);
+
   const [item, setItem] = useState([]);
-
-  const { data, loading, error } = useFetch(listUrl);
-
+  const [newItem, setnewItem] = useState('');
   return (
     <>
       <Loader loading={loading} />
@@ -21,26 +22,33 @@ export const List = ({ ListComponent, listUrl, ModalComponent, modalUrl }) => {
         <>
           <AddButton
             toggle={toggle}
-            isOpen={isOpen}
             item={item}
             setItem={setItem}
+            newItem={newItem}
+            setNewItem={setnewItem}
+            data={data}
+            setData={setData}
+            listUrl={listUrl}
+            isUsers={isUsers}
           />
           <StyledList>
-            {data.map((itemTest) => (
+            {data.map((listItem) => (
               <ListComponent
-                key={itemTest.id}
+                key={uuid()}
                 toggle={toggle}
                 setItem={setItem}
-                item={itemTest}
+                item={listItem}
               />
             ))}
             {item?.length !== 0 && (
               <ModalComponent
-                itemId={item?.id}
+                itemId={item}
                 isOpen={isOpen}
                 toggle={toggle}
-                setData={setItem}
+                setItem={setItem}
                 modalUrl={modalUrl}
+                deleteBox={setData}
+                parentBox={data}
               />
             )}
           </StyledList>

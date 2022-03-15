@@ -6,7 +6,7 @@ import "../../App.css";
 export const UsersBody = ({ item, setItem, toggle }) => {
   const modalToggle = () => {
     toggle();
-    setItem(item)
+    setItem(item.id)
   };
   return (
     <Box className="cards" onClick={modalToggle}>

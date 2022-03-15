@@ -27,6 +27,7 @@
 }
 
 .card__title {
+  overflow-wrap: anywhere;
   font-weight: 400;
   color: #ffffff;
   justify-self: center;
@@ -96,16 +97,17 @@ li {
 }
 
 .modal-close-button {
-  position: absolute;
+  position: relative;
   left: 90%;
-  top: 15px;
+  bottom: 10px;
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1;
   color: #000;
-  opacity: 0.3;
+  opacity: 0.7;
   cursor: pointer;
   border: none;
+  height: 38px;
 }
 
 button {
@@ -147,6 +149,7 @@ td,
 th {
   border: 1px solid #999;
   padding: 20px;
+  z-index: 10;
 }
 th {
   width: 100px;

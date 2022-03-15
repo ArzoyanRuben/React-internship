@@ -15,7 +15,7 @@ export default function useFetch(url) {
     };
 
     getData().then((items) => {
-      setData(items);
+      setData(items.slice(0, 50));
       setLoading(false);
     });
     getData().catch((err) => {
@@ -27,5 +27,5 @@ export default function useFetch(url) {
     return setData(null);
   }, []);
 
-  return { data, loading, error };
+  return { data, setData, setLoading, loading, error };
 }

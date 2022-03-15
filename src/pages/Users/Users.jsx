@@ -11,6 +11,7 @@ export const Users = () => {
       listUrl={userUrl}
       ModalComponent={ModalUsers}
       modalUrl={postUrl}
+      isUsers={true}
     />
   );
 };
