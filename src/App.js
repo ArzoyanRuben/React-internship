@@ -4,11 +4,10 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Users from "./Home/Users/Users";
 import Albums from "./Home/Albums/Albums";
 import LeftSideBar from "./Layout/LeftSideBar/LeftSideBar";
-
 import Header from "./Layout/Header/Header";
 import Table from "./Home/Table/Table";
 import EditableTable from "./Home/EditabtleTable/EditableTable";
-import Tabel from "./component/Tabel"
+
 
 function App() {
   return (
@@ -23,7 +22,6 @@ function App() {
             <Route path="/table" element={<Table />} />
             <Route exact path="/editabletable" element={<EditableTable />} />
           </Routes>
-          {/* <Tabel/> */}
         </div>
       </div>
     </div>

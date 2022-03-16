@@ -1,173 +1,117 @@
-import React, { useState } from "react";
-import { nanoid } from "nanoid";
-import useFetch from "../../component/Hook/useFetch/useFetch";
+import React, { useState, useEffect } from "react";
+// import useFetch from "../../component/Hook/useFetch/useFetch";
 // import { USER_URL } from "../../constants/Urls";
-import data from "../../constants/data.json";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import "./EditableTable.css";
-import ReadRow from "./readEdit/ReadRow";
-import EditalbleRow from "./readEdit/EditableRow";
+import UserList from "./EditAdd/UserList";
+import AddUser from "./EditAdd/AddUser";
 
 export default function EditableTable() {
-  //   const [data] = useFetch(USER_URL);
-  const [contacts, setContacts] = useState(data);
-  const [addFormData, setAddFormData] = useState({
-    fullName: "",
-    address: "",
-    email: "",
-  });
+  // const [data] = useFetch(USER_URL);
 
-  const [editFormData, setEditFormData] = useState({
-    fullName: "",
-    address: "",
-    email: "",
-  });
+  const [users, setUsers] = useState([]);
 
-  const [editContactId, setEditContactId] = useState(null);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const handleAddFormChange = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...addFormData };
-    newFormData[fieldName] = fieldValue;
-
-    setAddFormData(newFormData);
-  
+  const fetchData = async () => {
+    await fetch("https://jsonplaceholder.typicode.com/users")
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.log(error));
   };
-  const handleEditFormChange = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...editFormData };
-    newFormData[fieldName] = fieldValue;
-
-    setEditFormData(newFormData);
-  };
-
-  const handleAddFormSubmit = (event) => {
-    event.preventDefault();
-
-    const newContact = {
-      id: nanoid(),
-      fullName: addFormData.fullName,
-      username: addFormData.username,
-      email: addFormData.email,
-    };
-    const newContacts = [...contacts, newContact];
-    setContacts(newContacts);
+  const onAdd = async (name, username, email) => {
+    await fetch("https://jsonplaceholder.typicode.com/users", {
+      method: "POST",
+      body: JSON.stringify({
+        name: name,
+        username: username,
+        email: email,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => {
+        if (response.status !== 201) {
+          return;
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        setUsers((users) => [...users, data]);
+      })
+      .catch((error) => console.log(error));
   };
 
-  const handleEditFormSubmit = (event) => {
-    event.preventDefault();
+  const onEdit = async (id, name, username, email) => {
+    await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        name: name,
+        username: username,
+        email: email,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          return;
+        } else {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        const updatedUsers = users.map((user) => {
+          if (user.id === id) {
+            user.name = name;
+            user.username = username;
+            user.email = email;
+          }
 
-    const editedContact = {
-      id: editContactId,
-      fullName: editFormData.fullName,
-      address: editFormData.address,
-      phoneNumber: editFormData.phoneNumber,
-      email: editFormData.email,
-    };
+          return user;
+        });
 
-    const newContacts = [...contacts];
-
-    const index = contacts.findIndex((contact) => contact.id === editContactId);
-
-    newContacts[index] = editedContact;
-
-    setContacts(newContacts);
-    setEditContactId(null);
+        setUsers((setUsers) => updatedUsers);
+      })
+      .catch((error) => console.log(error));
   };
 
-  const handleEditClick = (event, contact) => {
-    event.preventDefault();
-    setEditContactId(contact.id);
-
-    const formValues = {
-      fullName: contact.fullName,
-      address: contact.address,
-      email: contact.email,
-    };
-    setEditFormData(formValues);
-  };
-  const handleCancelClick = () => {
-    setEditContactId(null);
-  };
-  const handleDeleteClick = (contactId) => {
-    const newContacts = [...contacts];
-
-    const index = contacts.findIndex((contact) => contact.id === contactId);
-
-    newContacts.splice(index, 1);
-
-    setContacts(newContacts);
+  const onDelete = async (id) => {
+    await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          return;
+        } else {
+          setUsers(
+            users.filter((user) => {
+              return user.id !== id;
+            })
+          );
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
-    <div className="container">
-      <div className="new-contact">
-        {/* <p>Add a Contact</p> */}
-        <form onSubmit={handleAddFormSubmit}>
-          <input
-            type="text"
-            name="fullName"
-            required="required"
-            placeholder="Enter a name..."
-            onChange={handleAddFormChange}
-          />
-          <input
-            type="text"
-            name="username"
-            required="required"
-            placeholder="Enter a username..."
-            onChange={handleAddFormChange}
-          />
-
-          <input
-            type="email"
-            name="email"
-            required="required"
-            placeholder="Enter an email..."
-            onChange={handleAddFormChange}
-          />
-          <button type="submit">Add</button>
-        </form>
-      </div>
-      <form onSubmit={handleEditFormSubmit}>
-        <table className="main-table">
-          <thead>
-            <tr className="table-row">
-              <th>User Name</th>
-              <th>Address</th>
-              <th> Email</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.map((contact) => (
-              <>
-                {editContactId === contact.id ? (
-                  <EditalbleRow
-                    editFormData={editFormData}
-                    handleEditFormChange={handleEditFormChange}
-                    handleCancelClick={handleCancelClick}
-                  />
-                ) : (
-                  <ReadRow
-                    contact={contact}
-                    handleEditClick={handleEditClick}
-                    handleDeleteClick={handleDeleteClick}
-                  />
-                )}
-              </>
-            ))}
-          </tbody>
-        </table>
-      </form>
+    <div className="main-table">
+      <AddUser onAdd={onAdd} />
+      {users.map((user) => (
+        <UserList
+          id={user.id}
+          key={user.id}
+          name={user.name}
+          username={user.username}
+          email={user.email}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
+      ))}
     </div>
   );
 }

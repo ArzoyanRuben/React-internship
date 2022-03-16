@@ -1,0 +1,15 @@
+.add-user {
+    padding: 5px;
+}
+.add-user input {
+    padding: 3px;
+    margin: 2px;
+   
+}
+.add-user button {
+    padding: 3px;
+    background: none;
+    border:1px solid grey;
+    border-radius: 5px;
+    background-color: rgb(111, 161, 145);
+}
