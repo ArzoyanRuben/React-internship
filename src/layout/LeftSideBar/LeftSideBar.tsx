@@ -1,16 +1,19 @@
+import { Link } from "react-router-dom";
+
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import "./LeftSideBar.css";
 import { navItems } from "../../constants/navItems.constant";
 import SideBarItem from "../../components/SideBarItem/SideBarItem";
-import { Link } from "react-router-dom";
+import { FunctionComponent } from "react";
 
 const { v4: uuidv4 } = require("uuid");
 
-export default function LeftSideBar() {
+const LeftSideBar:FunctionComponent = () => {
   return (
     <nav className="nav">
       <ul className="nav-items">
@@ -22,14 +25,14 @@ export default function LeftSideBar() {
                 <Accordion key={uuidv4()}>
                   <Link to={items[i].path}>
                     <AccordionSummary
-                      expandIcon={<ExpandMoreIcon/>}
+                      expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1a-content"
                     >
                       <Typography>{items[i].description}</Typography>
                     </AccordionSummary>
                   </Link>
                   <AccordionDetails>
-                    {printNavItems(items[i].subItems).map((item) => {
+                    {printNavItems(items[i].subItems || []).map((item) => {
                       return <Typography key={uuidv4()}>{item}</Typography>;
                     })}
                   </AccordionDetails>
@@ -50,3 +53,5 @@ export default function LeftSideBar() {
     </nav>
   );
 }
+
+export default LeftSideBar

@@ -1,8 +1,9 @@
-import PostsList from "../../components/PostsList/PostsList"
+import { FunctionComponent } from "react";
+import PostsList from "../../components/PostsList/PostsList";
 import Lists from "../../components/shared/Lists/Lists";
 import postsSlice from "../../store/postsSlice";
 
-export default function Posts() {
+const Posts: FunctionComponent = () => {
   const postsURL = `${process.env.REACT_APP_LIST_URL}/posts`;
 
   return (
@@ -10,6 +11,9 @@ export default function Posts() {
       listItemsGetter={postsURL}
       ListComponent={PostsList}
       action={postsSlice.actions.add}
+      list="posts"
     />
   );
-}
+};
+
+export default Posts;

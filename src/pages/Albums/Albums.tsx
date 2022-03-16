@@ -9,7 +9,6 @@ export default function Albums() {
     <Lists
       listItemsGetter={albumsURL}
       ListComponent={AlbumsList}
-      action={albumsSlice.actions.add}
-    />
+      action={albumsSlice.actions.add} list={""}    />
   );
 }

@@ -6,21 +6,38 @@ import {
   useEffect,
   MutableRefObject,
 } from "react";
+
 import Loader from "../Loader/Loader";
 import "./List.css";
 import Modal from "../Modal/Modal";
 import useFetch from "../../../hooks/useFetch";
 import { useAppDispatch } from "../../../store/index";
 import { List } from "../../../APIResponseTypes";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   listItemsGetter: string;
-  ListComponent: any
+  ListComponent: any;
   action: any;
   list: string;
 }
 
 type Modal = true | false;
+
+const fakeData = {
+  username: "Antonette",
+  email: "Shanna@melissa.tv",
+  address: {
+    street: "Victor Plains",
+    suite: "Suite 879",
+    city: "Wisokyburgh",
+    zipcode: "90566-7771",
+    geo: {
+      lat: "-43.9509",
+      lng: "-34.4618",
+    },
+  },
+};
 
 const Lists: FunctionComponent<IProps> = ({
   listItemsGetter,
@@ -32,8 +49,14 @@ const Lists: FunctionComponent<IProps> = ({
   const currentRef: MutableRefObject<List> = useRef({} as List);
   const typeRef: MutableRefObject<string> = useRef("");
   const newValue: MutableRefObject<string> = useRef("");
-  const [listItems, error, setListItems] = useFetch(listItemsGetter);
+  const [listItems, status, fetchData, setListItems] = useFetch(
+    listItemsGetter,
+    "GET"
+  );
   const dispatch = useAppDispatch();
+  let navigate = useNavigate();
+
+  console.log(listItems, "sssssss");
 
   const closeModal = () => {
     setOpen(false);
@@ -44,7 +67,7 @@ const Lists: FunctionComponent<IProps> = ({
   }, [listItems]);
 
   const showItems = useCallback(
-    (item)=> {
+    (item) => {
       currentRef.current = item;
       setOpen(true);
     },
@@ -52,36 +75,52 @@ const Lists: FunctionComponent<IProps> = ({
     [listItems]
   );
 
+  useCallback(() => {
+    if (status === "error") navigate("/error");
+  }, [status]);
+
   const changeTheValue = (event: { target: HTMLInputElement }) => {
     newValue.current = event.target.value;
   };
 
   const setNewValue = (type: string) => (): void => {
+    let data: List[] | object;
     if (type === "new") {
-      setListItems([
-        { name: newValue.current, id: listItems.length + 1 },
+      data = [
+        { name: newValue.current, id: listItems.length + 1, ...fakeData },
         ...listItems,
-      ]);
+      ];
+      fetchData(listItemsGetter, "POST", data).then((status: String) => {
+        if (status === "success") setListItems(data);
+      });
     } else {
-      setListItems(
-        listItems.map((item) => {
-            return item.id === currentRef.current.id
-              ? list === "photos"
-                ? { ...item, url: newValue.current }
-                : { ...item, name: newValue.current }
-              : item;
-        })
-      );
+      data =
+        list === "photos"
+          ? { url: newValue.current }
+          : { name: newValue.current };
+      let url: string = `${listItemsGetter}/${currentRef.current.id}`;
+      fetchData(url, "PATCH", data).then((status: string) => {
+        if (status === "success")
+          setListItems(
+            listItems.map((item) =>
+              item.id === currentRef.current.id ? data : item
+            )
+          );
+      });
     }
     setOpen(false);
   };
 
   const deleteItem = (): void => {
-    setListItems(
-      listItems.filter((item) => {
-        return item.id !== currentRef.current.id;
-      })
-    );
+    const data: List[] = listItems.filter((item) => {
+      return item.id !== currentRef.current.id;
+    });
+
+    fetchData(listItemsGetter, "POST", data).then((status: string) => {
+      if (status === "success") setListItems(data);
+    });
+
+    setOpen(false);
   };
 
   const changeType = (type: string) => (): void => {
@@ -90,7 +129,7 @@ const Lists: FunctionComponent<IProps> = ({
 
   return (
     <>
-      {listItems ? (
+      {status === "loaded" ? (
         <ul className="list">
           <button
             onClick={() => {

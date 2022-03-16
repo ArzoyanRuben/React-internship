@@ -1,8 +1,9 @@
+import { FunctionComponent } from "react";
 import PhotosList from "../../components/PhotosList/PhotosList";
 import Lists from "../../components/shared/Lists/Lists";
 import photosSlice from "../../store/photosSlice";
 
-export default function Photos() {
+const Photos:FunctionComponent = () => {
   const photosURL = `${process.env.REACT_APP_LIST_URL}/photos`;
 
   return (
@@ -14,3 +15,5 @@ export default function Photos() {
     />
   );
 }
+
+export default Photos
