@@ -9,6 +9,7 @@ function Navbar() {
                 <div><Link to='/albums'>Albums</Link></div>
                 <div><Link to='/tables'>Tables</Link></div>
                 <div><Link to='/CRUD'>CRUD</Link></div>
+                <div><Link to='/Edit'>Edit</Link></div>
             </div>
         </nav>
     )

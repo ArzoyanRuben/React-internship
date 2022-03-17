@@ -5,7 +5,8 @@ import Home from "./components/Home";
 import Albums from "./components/Albums";
 import {Routes, Route} from "react-router-dom";
 import Table from "./components/Table";
-import CRUD from "./components/CRUD"
+import CRUD from "./components/CRUD";
+import Edit from "./components/Edit";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/albums" element={<Albums/>}/>
                     <Route path="/tables" element={<Table/>}/>
                     <Route path="/CRUD" element={<CRUD/>}/>
+                    <Route path="/Edit" element={<Edit/>}/>
                 </Routes>
             </div>
         </div>
