@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import EditedUsers from "./EditedUsers";
-
 import "./Edit.css";
 import AddUser from "./AddUser";
 
@@ -68,7 +67,6 @@ function Edit() {
                         user.email = email;
                         user.website = website
                     }
-
                     return user;
                 });
 
@@ -105,8 +103,14 @@ function Edit() {
                     <div>Actions</div>
                 </div>
                 {users?.map(user => (
-                    <EditedUsers key={user.id} id={user.id} name={user.name} email={user.email} website={user.website}
-                                 onEdit={onEdit} onDelete={onDelete}/>
+                    <EditedUsers
+                        key={user.id}
+                        id={user.id}
+                        name={user.name}
+                        email={user.email}
+                        website={user.website}
+                        onEdit={onEdit}
+                        onDelete={onDelete}/>
                 ))}
             </div>
 
