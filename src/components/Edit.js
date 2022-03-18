@@ -18,13 +18,13 @@ function Edit() {
             .then((data) => setUsers(data))
             .catch((error) => console.log(error));
     };
-    const onAdd = async (name, email, phone) => {
+    const onAdd = async (name, email, website) => {
         await fetch("https://jsonplaceholder.typicode.com/users", {
             method: "POST",
             body: JSON.stringify({
                 name: name,
                 email: email,
-                phone: phone
+                website: website
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -42,6 +42,25 @@ function Edit() {
             })
             .catch((error) => console.log(error));
     };
+
+    const onDelete = async (id) => {
+        await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+            method: "DELETE"
+        })
+            .then((response) => {
+                if (response.status !== 200) {
+                    return;
+                } else {
+                    setUsers(
+                        users.filter((user) => {
+                            return user.id !== id;
+                        })
+                    );
+                }
+            })
+            .catch((error) => console.log(error));
+    };
+
     return (
         <div>
             <div className='user'>
@@ -49,13 +68,13 @@ function Edit() {
                 <div className='editedHeader'>
                     <div>Name</div>
                     <div>Email</div>
-                    <div>Phone</div>
+                    <div>Website</div>
                     <div>Actions</div>
                 </div>
-                {users?.map(item => (
-                    <EditedUsers key={item.id} id1={item.id} name={item.name} email={item.email} phone={item.phone}/>
+                {users?.map(user => (
+                    <EditedUsers key={user.id} id={user.id} name={user.name} email={user.email} website={user.website}
+                                 onDelete={onDelete}/>
                 ))}
-
             </div>
 
         </div>

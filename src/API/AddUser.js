@@ -1,5 +1,6 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import "./AddUser.css";
+import AddIcon from '@mui/icons-material/Add';
 
 function AddUser({onAdd}) {
     const handleOnSubmit = (e) => {
@@ -17,12 +18,12 @@ function AddUser({onAdd}) {
     }
     return (
         <div>
-            <h3 onClick={showForm}>Add user</h3>
+            <h3 onClick={showForm}>Add user <AddIcon className='addIcon'/></h3>
             <form ref={inputForm}  onSubmit={handleOnSubmit}>
                 <input placeholder='Name' name='name'/>
                 <input placeholder='Email' name='email'/>
                 <input placeholder='Phone' name='phone'/>
-                <button onSubmit={handleOnSubmit}>Add</button>
+                <button className="addButton" onSubmit={handleOnSubmit}>Add</button>
             </form>
         </div>
     );
