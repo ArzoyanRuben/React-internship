@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import EditedUsers from "./EditedUsers";
 
 import "./Edit.css";
-import AddUser from "../API/AddUser";
+import AddUser from "./AddUser";
 
 function Edit() {
 
@@ -42,7 +42,40 @@ function Edit() {
             })
             .catch((error) => console.log(error));
     };
+    const onEdit = async (id, name, email, website) => {
+        await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+            method: "PUT",
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                website: website
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        })
+            .then((response) => {
+                if (response.status !== 200) {
+                    return;
+                } else {
+                    return response.json();
+                }
+            })
+            .then((data) => {
+                const updatedUsers = users.map((user) => {
+                    if (user.id === id) {
+                        user.name = name;
+                        user.email = email;
+                        user.website = website
+                    }
 
+                    return user;
+                });
+
+                setUsers((users) => updatedUsers);
+            })
+            .catch((error) => console.log(error));
+    };
     const onDelete = async (id) => {
         await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
             method: "DELETE"
@@ -73,7 +106,7 @@ function Edit() {
                 </div>
                 {users?.map(user => (
                     <EditedUsers key={user.id} id={user.id} name={user.name} email={user.email} website={user.website}
-                                 onDelete={onDelete}/>
+                                 onEdit={onEdit} onDelete={onDelete}/>
                 ))}
             </div>
 
