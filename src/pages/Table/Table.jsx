@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useFetch from "./../../hooks/useFetch";
 import { Loader } from "./../../components/Loader/Loader";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -9,20 +9,33 @@ import { DownloadPDF } from "./DownlaodPDF/DownloadPDF";
 import { Button } from '@mui/material';
 import { TableBody } from './TableBody/TableBody';
 import { v4 as uuid } from 'uuid';
+import { useDispatch, useSelector } from "react-redux";
+import { useGetUsersQuery } from "../../services/usersAPI";
+import { usersSliceOp, usersSliceSel } from "../../store/users";
 import "../../App.css";
+import { TableActions } from './TableActions/TableActions';
 
 export const Table = () => {
   const tableDataUrl = process.env.REACT_APP_TABLE_API
   const [curItem, setCurItem] = useState(null);
   const [curKey, setCurKey] = useState(null)
+  const [curIndex, setCurIndex] = useState(null);
+  const [curIndexRow, setCurIndexRow] = useState(null);
   const { isOpen, toggle } = useCustomModal();
   const { data, setData, loading, error } = useFetch(tableDataUrl);
-  const tableData = [];
-  const objKeys = data && Object.keys(data[0]);
+  const dataTable = useSelector(usersSliceSel.usersData)
+  const objKeys = (dataTable && Object.keys(dataTable[0])) || {};
+  const dispatch = useDispatch();
+  let tableData = [];
+
+  useEffect(() => {
+    dispatch(usersSliceOp.handleData(data))
+  }, [data])
 
   for (let i = 0; i < objKeys?.length - 6; i++) {
-    tableData.push(objKeys[i]);
+    tableData && tableData.push(objKeys[i]);
   }
+
   return (
     <>
       {loading ?
@@ -33,7 +46,7 @@ export const Table = () => {
               <table>
                 <thead>
                   <tr>
-                    {tableData?.map((item, index) => (
+                    {tableData && tableData?.map((item, index) => (
                       <th key={item}>{tableData[index]}</th>
                     ))}
                     <th>Download PDF4</th>
@@ -41,10 +54,14 @@ export const Table = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data?.map((item, index) => (
-                    <tr key={index} >
-                      {tableData?.map((itemKey, i) => (
+                  {dataTable && dataTable.map((item, col) => (
+                    <tr key={col} >
+                      {tableData && tableData.map((itemKey, row) => (
                         <TableBody
+                          col={col}
+                          row={row}
+                          setCurIndex={setCurIndex}
+                          setCurIndexRow={setCurIndexRow}
                           key={uuid()}
                           toggle={toggle}
                           setCurItem={setCurItem}
@@ -57,12 +74,12 @@ export const Table = () => {
                         <DownloadPDF item={item} />
                       </td>
                       <td className="col_hover">
-                        <Button>
-                          <EditIcon />
-                        </Button>
-                        <Button>
-                          <DeleteIcon />
-                        </Button>
+                        <TableActions
+                          // col={col}
+                          dataTable={dataTable}
+                        // curIndexRow={curIndexRow}
+                        // setCurIndexRow={setCurIndexRow}
+                        />
                       </td>
                     </tr>
                   ))}
@@ -73,12 +90,14 @@ export const Table = () => {
               <Modal
                 newItem={curItem}
                 setNewItem={setCurItem}
-                data={data}
-                setData={setData}
+                data={dataTable}
+                // setData={setData}
                 toggle={toggle}
                 tableModal={true}
                 url={tableDataUrl}
                 curKey={curKey}
+                curIndex={curIndex}
+                curIndexRow={curIndexRow}
               />
             }
           </>

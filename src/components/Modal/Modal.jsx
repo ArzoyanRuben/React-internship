@@ -1,7 +1,11 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import '../../App.css';
 import { Box } from '@mui/system';
 import { Button, TextField } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { addVal } from '../../store/users/usersSlice';
+import { useSelector } from 'react-redux';
+import { usersSliceOp } from '../../store/users';
 
 export const Modal = ({
     tableModal,
@@ -15,8 +19,12 @@ export const Modal = ({
     setData,
     url,
     isUsers,
-    curKey
+    curKey,
+    curIndex,
+    curIndexRow
 }) => {
+    // console.log(data, 'dataModal');
+    const dispatch = useDispatch();
     const handleUsersAddItem = (e) => {
         e.preventDefault();
         fetch(url
@@ -37,12 +45,30 @@ export const Modal = ({
         toggle();
         setNewItem('')
     }
+    const dataTable = useSelector(addVal);
+
+
+
+    // const changeData = () => {
+    //     let arrCopy = { ...dataTable.payload.users.usersData };
+    //     dispatch(usersSliceOp.handleData()
+    //     [...arrCopy, arrCopy[curIndexRow].disclosure_year])
+
+    //     let obj = arrCopy[curIndexRow];
+    //     let objCopy = Object.keys(obj);
+
+    //     console.log(arrCopy[curIndexRow], objCopy[curIndex]);
+    // }
+    // changeData();
+
+
     const handleChangeItem = (e) => {
         e.preventDefault();
-        setData([
-            ...data,
-            { test: newItem }
-        ])
+
+        // console.log(newItem, curKey, curIndex, 'dataaNew');
+        // debugger;
+        // setData(newItem)
+        // console.log(dataTable.payload.users.usersData, 'dataTable updated!')
     }
     return (
         <>
