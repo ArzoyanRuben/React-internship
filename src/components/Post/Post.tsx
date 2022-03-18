@@ -1,4 +1,7 @@
 import { FunctionComponent } from "react";
+
+import "./Post.css"
+
 import { IPost } from "../../APIResponseTypes";
 
 interface IProps {
@@ -15,10 +18,10 @@ const Post: FunctionComponent<IProps> = ({ post, showItems, changeType }) => {
   };
 
   return (
-    <div onClick={handleShowPosts}>
+    <li className="post" onClick={handleShowPosts}>
       <h3>{post.title}</h3>
       <p>{post.body}</p>
-    </div>
+    </li>
   );
 };
 

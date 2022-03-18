@@ -9,7 +9,7 @@
 
 .modal-content__close {
   position: fixed;
-  background-color: blue;
+  background-color: gray;
   cursor: pointer;
   width: 1.5rem;
   height: 1.5rem;
@@ -18,4 +18,11 @@
   justify-content: center;
   right: 32%;
   top: 12%;
+}
+
+.list-container {
+  width: 30rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

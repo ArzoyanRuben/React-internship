@@ -131,8 +131,8 @@ const Lists: FunctionComponent<IProps> = ({
 
   return (
     <>
-      {status === "loaded" || "success" ? (
-        <ul className="list">
+      {status === "loaded"? (
+        <div className="list-container">
           <button
             onClick={() => {
               setOpen(true);
@@ -146,7 +146,7 @@ const Lists: FunctionComponent<IProps> = ({
             showItems={showItems}
             changeType={changeType("old")}
           />
-        </ul>
+        </div>
       ) : (
         <Loader />
       )}

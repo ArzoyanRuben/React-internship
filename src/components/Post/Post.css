@@ -1,0 +1,6 @@
+.post {
+   border: 1px solid gray;
+   cursor: pointer;
+   list-style: none;
+   padding: 2rem
+}

@@ -20,7 +20,7 @@ const PostsList: FunctionComponent<IProps> = ({
   return (
     <>
       {list ? (
-        <div className="posts">
+        <ul className="posts">
           {list.map((post) => {
             return (
               <Post
@@ -31,7 +31,7 @@ const PostsList: FunctionComponent<IProps> = ({
               />
             );
           })}
-        </div>
+        </ul>
       ) : (
         <Loader />
       )}

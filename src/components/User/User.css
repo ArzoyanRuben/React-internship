@@ -1,9 +1,10 @@
 .user {
     display: flex;
     list-style: none;
-    border: 1px solid red;
+    border: 1px solid gray;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
     width: 20rem;
-    height: 3rem;
-    justify-content: space-between;
     cursor: pointer;
 }
