@@ -9,7 +9,9 @@ export default function useFetch(
 ): [List[], Status, Function, Function] {
   const [data, setData] = useState([] as List[]);
   const [status, setStatus] = useState("unloaded" as Status);
-console.log(status)
+
+  console.log(status);
+
   const fetchData = async (
     url: string,
     method: string,
@@ -29,10 +31,14 @@ console.log(status)
         setData(json);
         setStatus("loaded");
       } else {
-        setStatus("loaded");
+        setStatus("success");
+        await setTimeout(() => {
+          setStatus("loaded");
+        }, 2000);
         return "success";
-        
       }
+      
+
     } catch (err) {
       setStatus("error");
     }

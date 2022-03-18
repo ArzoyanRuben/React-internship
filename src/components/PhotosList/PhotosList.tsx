@@ -18,18 +18,12 @@ const PhotosList: FunctionComponent<IProps> = ({
   showItems,
   changeType,
 }) => {
-  const albums = useSelector((state: RootStateOrAny) => state.albums);
 
   return (
     <>
-      {/* {albums.map((album) => {
-      let photos = list.filter((item) => item.id === album.id);
-      
-    } */}
       {list ? (
         <div className="photos">
           {list.map((photo) => {
-            // if (photo.id === id) {
             return (
               <Photo
                 photo={photo}
@@ -38,7 +32,6 @@ const PhotosList: FunctionComponent<IProps> = ({
                 changeType={changeType}
               />
             );
-            // }
           })}
         </div>
       ) : (

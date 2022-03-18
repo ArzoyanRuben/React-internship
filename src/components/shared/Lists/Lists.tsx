@@ -14,6 +14,7 @@ import useFetch from "../../../hooks/useFetch";
 import { useAppDispatch } from "../../../store/index";
 import { List } from "../../../APIResponseTypes";
 import { useNavigate } from "react-router-dom";
+import Alert from "../Alert/Alert"
 
 interface IProps {
   listItemsGetter: string;
@@ -39,6 +40,8 @@ const fakeData = {
   },
 };
 
+const { v4: uuidv4 } = require("uuid");
+
 const Lists: FunctionComponent<IProps> = ({
   listItemsGetter,
   ListComponent,
@@ -53,10 +56,9 @@ const Lists: FunctionComponent<IProps> = ({
     listItemsGetter,
     "GET"
   );
+
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
-
-  console.log(listItems, "sssssss");
 
   const closeModal = () => {
     setOpen(false);
@@ -87,7 +89,7 @@ const Lists: FunctionComponent<IProps> = ({
     let data: List[] | object;
     if (type === "new") {
       data = [
-        { name: newValue.current, id: listItems.length + 1, ...fakeData },
+        { name: newValue.current, id: uuidv4(), ...fakeData },
         ...listItems,
       ];
       fetchData(listItemsGetter, "POST", data).then((status: String) => {
@@ -103,7 +105,7 @@ const Lists: FunctionComponent<IProps> = ({
         if (status === "success")
           setListItems(
             listItems.map((item) =>
-              item.id === currentRef.current.id ? data : item
+              item.id === currentRef.current.id ? {...item, ...data} : item
             )
           );
       });
@@ -129,7 +131,7 @@ const Lists: FunctionComponent<IProps> = ({
 
   return (
     <>
-      {status === "loaded" ? (
+      {status === "loaded" || "success" ? (
         <ul className="list">
           <button
             onClick={() => {
@@ -148,6 +150,7 @@ const Lists: FunctionComponent<IProps> = ({
       ) : (
         <Loader />
       )}
+      {status === "success" && <Alert/>}
       {open && (
         <Modal>
           <div className="modal-content">
