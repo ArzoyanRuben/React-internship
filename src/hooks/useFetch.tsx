@@ -34,7 +34,7 @@ export default function useFetch(
         setStatus("success");
         await setTimeout(() => {
           setStatus("loaded");
-        }, 2000);
+        }, 1000);
         return "success";
       }
       

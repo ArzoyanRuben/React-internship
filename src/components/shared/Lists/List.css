@@ -1,22 +1,21 @@
 .modal-content {
-    background-color: white;
-    width: 35rem;
-    height: 35rem;
-    padding: 1rem;
-    position: relative;
-    overflow-y: auto;
-  }
-  
-  .modal-content__close {
-    position: fixed;
-    background-color: blue;
-    cursor: pointer;
-    width: 1.5rem;
-    height: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    right: 32%;
-    top: 12%
-  }
-  
+  background-color: white;
+  width: 35rem;
+  height: 35rem;
+  padding: 1rem;
+  position: relative;
+  overflow-y: auto;
+}
+
+.modal-content__close {
+  position: fixed;
+  background-color: blue;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 32%;
+  top: 12%;
+}
